@@ -27,6 +27,9 @@ namespace EasyAbp.EasyComment.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreationTime")
                         .HasColumnName("CreationTime")
                         .HasColumnType("datetime2");
@@ -49,12 +52,21 @@ namespace EasyAbp.EasyComment.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<string>("ItemKey")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ItemType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnName("LastModificationTime")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("LastModifierId")
                         .HasColumnName("LastModifierId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ReplyTo")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("TenantId")
