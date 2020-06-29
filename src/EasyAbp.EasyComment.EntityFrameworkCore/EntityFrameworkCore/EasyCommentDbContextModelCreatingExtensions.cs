@@ -1,6 +1,8 @@
-﻿using System;
+using EasyAbp.EasyComment.Comments;
+using System;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace EasyAbp.EasyComment.EntityFrameworkCore
 {
@@ -38,6 +40,16 @@ namespace EasyAbp.EasyComment.EntityFrameworkCore
                 b.HasIndex(q => q.CreationTime);
             });
             */
+
+
+            builder.Entity<Comment>(b =>
+            {
+                b.ToTable(options.TablePrefix + "Comments", options.Schema);
+                b.ConfigureByConvention(); 
+                
+
+                /* Configure more properties here */
+            });
         }
     }
 }

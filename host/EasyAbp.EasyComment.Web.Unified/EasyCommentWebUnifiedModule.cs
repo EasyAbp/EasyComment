@@ -60,6 +60,7 @@ namespace EasyAbp.EasyComment
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AbpAspNetCoreSerilogModule)
         )]
+    [DependsOn(typeof(EasyCommentHttpApiModule))]
     public class EasyCommentWebUnifiedModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

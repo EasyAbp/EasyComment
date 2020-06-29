@@ -1,6 +1,20 @@
 {
   "culture": "zh-Hans",
   "texts": {
-    "ManageYourProfile":  "管理个人资料" 
+    "ManageYourProfile": "管理个人资料",
+    "Permission:Comment": "Comment",
+    "Permission:Create": "Create",
+    "Permission:Update": "Update",
+    "Permission:Delete": "Delete",
+    "Menu:Comment": "MenuComment",
+    "Comment": "Comment",
+    "CommentItemType": "CommentItemType",
+    "CommentItemKey": "CommentItemKey",
+    "CommentContent": "CommentContent",
+    "CommentReplyTo": "CommentReplyTo",
+    "CreateComment": "CreateComment",
+    "EditComment": "EditComment",
+    "CommentDeletionConfirmationMessage": "Are you sure to delete the comment {0}?",
+    "SuccessfullyDeleted": "Successfully deleted"
   }
 }

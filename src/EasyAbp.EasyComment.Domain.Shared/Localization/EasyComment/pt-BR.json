@@ -1,6 +1,19 @@
 {
   "culture": "pt-BR",
   "texts": {
-
+    "Permission:Comment": "Comment",
+    "Permission:Create": "Create",
+    "Permission:Update": "Update",
+    "Permission:Delete": "Delete",
+    "Menu:Comment": "MenuComment",
+    "Comment": "Comment",
+    "CommentItemType": "CommentItemType",
+    "CommentItemKey": "CommentItemKey",
+    "CommentContent": "CommentContent",
+    "CommentReplyTo": "CommentReplyTo",
+    "CreateComment": "CreateComment",
+    "EditComment": "EditComment",
+    "CommentDeletionConfirmationMessage": "Are you sure to delete the comment {0}?",
+    "SuccessfullyDeleted": "Successfully deleted"
   }
 }

@@ -12,4 +12,8 @@
     <ProjectReference Include="..\EasyAbp.EasyComment.Application.Contracts\EasyAbp.EasyComment.Application.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Comments" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
+using EasyAbp.EasyComment.Localization;
+using EasyAbp.EasyComment.Permissions;
 using Volo.Abp.UI.Navigation;
 
 namespace EasyAbp.EasyComment.Web.Menus
@@ -13,11 +15,17 @@ namespace EasyAbp.EasyComment.Web.Menus
             }
         }
 
-        private Task ConfigureMainMenu(MenuConfigurationContext context)
+        private async Task ConfigureMainMenu(MenuConfigurationContext context)
         {
-            //Add main menu items.
+            var l = context.GetLocalizer<EasyCommentResource>();
+             //Add main menu items.
 
-            return Task.CompletedTask;
+            if (await context.IsGrantedAsync(EasyCommentPermissions.Comment.Default))
+            {
+                context.Menu.AddItem(
+                    new ApplicationMenuItem("Comment", l["Menu:Comment"], "/EasyComment/Comments/Comment")
+                );
+            }
         }
     }
 }
