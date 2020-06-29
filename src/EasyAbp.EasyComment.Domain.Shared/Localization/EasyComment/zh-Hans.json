@@ -2,6 +2,7 @@
   "culture": "zh-Hans",
   "texts": {
     "ManageYourProfile": "管理个人资料",
+    "Permission:EasyComment" : "EasyComment",
     "Permission:Comment": "评论",
     "Permission:Create": "创建",
     "Permission:Update": "编辑",
@@ -17,7 +18,7 @@
     "EditComment": "编辑评论",
     "CommentDeletionConfirmationMessage": "确定删除评论 {0}?",
     "SuccessfullyDeleted": "删除成功",
-    "EasyComment:OnlyOwnedCommentEditAllowed" : "用户只能更新自己的评论",
-    "EasyComment:OnlyOwnedCommentDeleteAllowed" : "用户只能删除自己的评论"
+    "EasyComment:001" : "用户只能更新自己的评论",
+    "EasyComment:002" : "用户只能删除自己的评论"
   }
 }

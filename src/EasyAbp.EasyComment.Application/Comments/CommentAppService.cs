@@ -49,7 +49,7 @@ namespace EasyAbp.EasyComment.Comments
             var comment = await GetEntityByIdAsync(input.Id);
             if (comment.CreatorId != CurrentUser.GetId())
             {
-                throw new UserFriendlyException(EasyCommentErrorCodes.OnlyOwnedCommentEditAllowed);
+                throw new BusinessException(EasyCommentErrorCodes.OnlyOwnedCommentEditAllowed);
             }
 
             comment.SetContent(input.Content);
@@ -62,7 +62,7 @@ namespace EasyAbp.EasyComment.Comments
             var comment = await GetEntityByIdAsync(id);
             if (comment.CreatorId != CurrentUser.GetId())
             {
-                throw new UserFriendlyException(EasyCommentErrorCodes.OnlyOwnedCommentDeleteAllowed);
+                throw new BusinessException(EasyCommentErrorCodes.OnlyOwnedCommentDeleteAllowed);
             }
 
             await DeleteByIdAsync(id);

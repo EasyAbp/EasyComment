@@ -14,7 +14,6 @@ namespace EasyAbp.EasyComment.Permissions
             commentPermission.AddChild(EasyCommentPermissions.Comment.Create, L("Permission:Create"));
             commentPermission.AddChild(EasyCommentPermissions.Comment.Update, L("Permission:Update"));
             commentPermission.AddChild(EasyCommentPermissions.Comment.Delete, L("Permission:Delete"));
-            commentPermission.AddChild(EasyCommentPermissions.Comment.Management, L("Permission:Management"));
         }
 
         private static LocalizableString L(string name)

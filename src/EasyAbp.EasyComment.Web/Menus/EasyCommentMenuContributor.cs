@@ -22,8 +22,9 @@ namespace EasyAbp.EasyComment.Web.Menus
 
             if (await context.IsGrantedAsync(EasyCommentPermissions.Comment.Default))
             {
-                context.Menu.AddItem(
-                    new ApplicationMenuItem("CommentManagement", l["Menu:CommentManagement"], "/EasyComment/Comments/CommentManagement")
+                var administration = context.Menu.GetAdministration();
+                administration.AddItem(
+                    new ApplicationMenuItem("CommentManagement", l["Menu:CommentManagement"], "/EasyComment/Comments/CommentManagement", "fa fa-comments")
                 );
             }
         }
