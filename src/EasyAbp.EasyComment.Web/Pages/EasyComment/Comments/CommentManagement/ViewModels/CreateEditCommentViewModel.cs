@@ -1,8 +1,7 @@
 using System;
-
 using System.ComponentModel.DataAnnotations;
 
-namespace EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.Comment.ViewModels
+namespace EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.CommentManagement.ViewModels
 {
     public class CreateEditCommentViewModel
     {

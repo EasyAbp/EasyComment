@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.Comment
+namespace EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.CommentManagement
 {
     public class IndexModel : EasyCommentPageModel
     {

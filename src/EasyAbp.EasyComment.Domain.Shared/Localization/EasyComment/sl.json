@@ -6,7 +6,7 @@
     "Permission:Create": "Create",
     "Permission:Update": "Update",
     "Permission:Delete": "Delete",
-    "Menu:Comment": "MenuComment",
+    "Menu:CommentManagement": "MenuComment",
     "Comment": "Comment",
     "CommentItemType": "CommentItemType",
     "CommentItemKey": "CommentItemKey",

@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using EasyAbp.EasyComment.Localization;
 using EasyAbp.EasyComment.Permissions;
 using Volo.Abp.UI.Navigation;
@@ -23,7 +23,7 @@ namespace EasyAbp.EasyComment.Web.Menus
             if (await context.IsGrantedAsync(EasyCommentPermissions.Comment.Default))
             {
                 context.Menu.AddItem(
-                    new ApplicationMenuItem("Comment", l["Menu:Comment"], "/EasyComment/Comments/Comment")
+                    new ApplicationMenuItem("CommentManagement", l["Menu:CommentManagement"], "/EasyComment/Comments/CommentManagement")
                 );
             }
         }

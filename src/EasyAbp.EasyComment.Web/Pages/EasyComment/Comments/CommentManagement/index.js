@@ -3,8 +3,8 @@ $(function () {
     var l = abp.localization.getResource('EasyComment');
 
     var service = easyAbp.easyComment.comments.comment;
-    var createModal = new abp.ModalManager(abp.appPath + 'EasyComment/Comments/Comment/CreateModal');
-    var editModal = new abp.ModalManager(abp.appPath + 'EasyComment/Comments/Comment/EditModal');
+    var createModal = new abp.ModalManager(abp.appPath + 'EasyComment/Comments/CommentManagement/CreateModal');
+    var editModal = new abp.ModalManager(abp.appPath + 'EasyComment/Comments/CommentManagement/EditModal');
 
     var dataTable = $('#CommentTable').DataTable(abp.libs.datatables.normalizeConfiguration({
         processing: true,

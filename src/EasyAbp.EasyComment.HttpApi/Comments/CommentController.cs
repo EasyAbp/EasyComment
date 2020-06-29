@@ -26,7 +26,7 @@ namespace EasyAbp.EasyComment.Comments
         }
 
         [HttpGet]
-        public Task<PagedResultDto<CommentDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+        public Task<PagedResultDto<CommentDto>> GetListAsync(GetListInput input)
         {
             return _service.GetListAsync(input);
         }

@@ -3,25 +3,24 @@
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Volo.Abp.AspNetCore.Mvc.UI.Layout
-@using EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.Comment
 @using EasyAbp.EasyComment.Localization
-@model IndexModel
+@model EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.CommentManagement.IndexModel
 @inject IPageLayout PageLayout
 @inject IHtmlLocalizer<EasyCommentResource> L
 @inject IAuthorizationService Authorization
 @{
     PageLayout.Content.Title = L["Comment"].Value;
-    PageLayout.Content.BreadCrumb.Add(L["Menu:Comment"].Value);
+    PageLayout.Content.BreadCrumb.Add(L["Menu:CommentManagement"].Value);
     PageLayout.Content.MenuItemName = "Comment";
 }
 
 @section scripts
 {
-    <abp-script src="/Pages/EasyComment/Comments/Comment/index.js" />
+    <abp-script src="/Pages/EasyComment/Comments/CommentManagement/index.js" />
 }
 @section styles
 {
-    <abp-style src="/Pages/EasyComment/Comments/Comment/index.css"/>
+    <abp-style src="/Pages/EasyComment/Comments/CommentManagement/index.css"/>
 }
 
 <abp-card>

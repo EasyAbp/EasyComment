@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System;
 using EasyAbp.EasyComment.Comments.Dtos;
 using Volo.Abp.Application.Dtos;
@@ -9,10 +10,9 @@ namespace EasyAbp.EasyComment.Comments
         ICrudAppService< 
             CommentDto, 
             Guid, 
-            PagedAndSortedResultRequestDto,
+            GetListInput,
             CreateUpdateCommentDto,
             CreateUpdateCommentDto>
     {
-
     }
 }

@@ -6,15 +6,15 @@
     "Permission:Create": "Create",
     "Permission:Update": "Update",
     "Permission:Delete": "Delete",
-    "Menu:Comment": "MenuComment",
-    "Comment": "Comment",
-    "CommentItemType": "CommentItemType",
-    "CommentItemKey": "CommentItemKey",
-    "CommentContent": "CommentContent",
-    "CommentReplyTo": "CommentReplyTo",
-    "CreateComment": "CreateComment",
-    "EditComment": "EditComment",
-    "CommentDeletionConfirmationMessage": "Are you sure to delete the comment {0}?",
-    "SuccessfullyDeleted": "Successfully deleted"
+    "Menu:CommentManagement": "评论管理",
+    "Comment": "评论",
+    "CommentItemType": "项目类型",
+    "CommentItemKey": "项目键值",
+    "CommentContent": "内容",
+    "CommentReplyTo": "回复给",
+    "CreateComment": "创建评论",
+    "EditComment": "编辑评论",
+    "CommentDeletionConfirmationMessage": "确定删除评论 {0}?",
+    "SuccessfullyDeleted": "删除成功"
   }
 }

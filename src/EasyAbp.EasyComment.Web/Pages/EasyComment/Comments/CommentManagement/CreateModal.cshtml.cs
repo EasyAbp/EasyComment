@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using EasyAbp.EasyComment.Comments;
 using EasyAbp.EasyComment.Comments.Dtos;
-using EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.Comment.ViewModels;
+using EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.CommentManagement.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
-namespace EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.Comment
+namespace EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.CommentManagement
 {
     public class CreateModalModel : EasyCommentPageModel
     {

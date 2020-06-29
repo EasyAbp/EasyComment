@@ -1,6 +1,6 @@
 using EasyAbp.EasyComment.Comments.Dtos;
-using EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.Comment.ViewModels;
 using AutoMapper;
+using EasyAbp.EasyComment.Web.Pages.EasyComment.Comments.CommentManagement.ViewModels;
 
 namespace EasyAbp.EasyComment.Web
 {
