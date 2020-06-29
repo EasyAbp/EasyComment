@@ -2,10 +2,11 @@
   "culture": "zh-Hans",
   "texts": {
     "ManageYourProfile": "管理个人资料",
-    "Permission:Comment": "Comment",
-    "Permission:Create": "Create",
-    "Permission:Update": "Update",
-    "Permission:Delete": "Delete",
+    "Permission:Comment": "评论",
+    "Permission:Create": "创建",
+    "Permission:Update": "编辑",
+    "Permission:Delete": "删除",
+    "Permission:Management": "管理",
     "Menu:CommentManagement": "评论管理",
     "Comment": "评论",
     "CommentItemType": "项目类型",
@@ -15,6 +16,8 @@
     "CreateComment": "创建评论",
     "EditComment": "编辑评论",
     "CommentDeletionConfirmationMessage": "确定删除评论 {0}?",
-    "SuccessfullyDeleted": "删除成功"
+    "SuccessfullyDeleted": "删除成功",
+    "EasyComment:OnlyOwnedCommentEditAllowed" : "用户只能更新自己的评论",
+    "EasyComment:OnlyOwnedCommentDeleteAllowed" : "用户只能删除自己的评论"
   }
 }

@@ -15,6 +15,8 @@
     "CreateComment": "Create Comment",
     "EditComment": "Edit Comment",
     "CommentDeletionConfirmationMessage": "Are you sure to delete the comment {0}?",
-    "SuccessfullyDeleted": "Successfully deleted"
+    "SuccessfullyDeleted": "Successfully deleted",
+    "EasyComment:OnlyOwnedCommentEditAllowed" : "Users are only allowed to edit their own comments",
+    "EasyComment:OnlyOwnedCommentDeleteAllowed" : "Users are only allowed to delete their own comments"
   }
 }

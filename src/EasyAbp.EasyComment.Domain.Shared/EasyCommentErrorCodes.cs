@@ -2,6 +2,7 @@
 {
     public static class EasyCommentErrorCodes
     {
-        //Add your business exception error codes here...
+        public const string OnlyOwnedCommentEditAllowed = "EasyComment:001";
+        public const string OnlyOwnedCommentDeleteAllowed = "EasyComment:002";
     }
 }

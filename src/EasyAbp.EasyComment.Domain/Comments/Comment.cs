@@ -1,5 +1,6 @@
 using System;
 using JetBrains.Annotations;
+using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
@@ -19,11 +20,17 @@ namespace EasyAbp.EasyComment.Comments
 
         public Comment(Guid id, [NotNull] string itemType, [NotNull] string itemKey, [NotNull] string content, Guid? replyTo, Guid? tenantId = null) : base(id)
         {
-            ItemType = itemType;
-            ItemKey = itemKey;
-            Content = content;
+            ItemType = Check.NotNullOrWhiteSpace(itemType, nameof(itemType));
+            ItemKey = Check.NotNullOrWhiteSpace(itemType, nameof(itemType));;
+            Content = Check.NotNullOrWhiteSpace(content, nameof(content));;
             ReplyTo = replyTo;
             TenantId = tenantId;
+        }
+
+        public virtual Comment SetContent([NotNull] string content)
+        {
+            Content = Check.NotNullOrWhiteSpace(content, nameof(content));;
+            return this;
         }
     }
 }

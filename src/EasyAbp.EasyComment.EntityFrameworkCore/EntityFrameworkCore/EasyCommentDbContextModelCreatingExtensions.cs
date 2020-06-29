@@ -47,8 +47,8 @@ namespace EasyAbp.EasyComment.EntityFrameworkCore
                 b.ToTable(options.TablePrefix + "Comments", options.Schema);
                 b.ConfigureByConvention();
 
-                b.Property(c => c.ItemType).IsRequired().HasMaxLength(CommentConsts.MaxItemType);
-                b.Property(c => c.ItemKey).IsRequired().HasMaxLength(CommentConsts.MaxItemKey);
+                b.Property(c => c.ItemType).IsRequired().HasMaxLength(CommentConsts.MaxItemTypeLength);
+                b.Property(c => c.ItemKey).IsRequired().HasMaxLength(CommentConsts.MaxItemKeyLength);
                 b.Property(c => c.Content).IsRequired().HasMaxLength(CommentConsts.MaxContentLength);
 
                 b.HasIndex(c => new {c.ItemType, c.ItemKey});
