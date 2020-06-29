@@ -53,16 +53,16 @@ namespace EasyAbp.EasyComment.Comments
 
         [HttpPut]
         [Route("commentContent")]
-        public Task<CommentDto> UpdateCommentContent(UpdateCommentContentInput input)
+        public Task<CommentDto> UpdateContent(UpdateContentInput input)
         {
-            return _service.UpdateCommentContent(input);
+            return _service.UpdateContent(input);
         }
 
         [HttpDelete]
         [Route("{id}/userComment")]
-        public Task DeleteUserComment(Guid id)
+        public Task DeleteComment(Guid id)
         {
-            return _service.DeleteUserComment(id);
+            return _service.DeleteComment(id);
         }
     }
 }
