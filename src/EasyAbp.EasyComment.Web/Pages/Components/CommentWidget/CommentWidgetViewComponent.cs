@@ -7,7 +7,9 @@ using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
 
 namespace EasyAbp.EasyComment.Web.Pages.Components.CommentWidget
 {
-    [Widget]
+    [Widget(
+        StyleFiles = new[] {"/Pages/Components/CommentWidget/Default.css"}
+    )]
     public class CommentWidgetViewComponent : AbpViewComponent
     {
         private readonly ICommentAppService _service;
@@ -25,6 +27,6 @@ namespace EasyAbp.EasyComment.Web.Pages.Components.CommentWidget
                 ItemKey = itemKey,
             });
             return View(comments);
-        } 
+        }
     }
 }

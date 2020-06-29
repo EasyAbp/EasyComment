@@ -1,6 +1,16 @@
 ﻿@using EasyAbp.EasyComment.Comments.Dtos
+@using EasyAbp.EasyComment.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<EasyCommentResource> L
 
-@foreach (CommentDto comment in Model.Items)
-{
-    <p>@comment.Content</p>
-}
+<div class="ec-comments">
+    <i class="fa fa-comments"> @L["TotalComments", Model.TotalCount]</i>
+    @foreach (CommentDto comment in Model.Items)
+    {
+        <abp-container class="ec-comment">
+            <abp-row>@comment.CreatorId @comment.CreationTime</abp-row>
+            <p>@comment.Content</p>
+            <hr/>
+        </abp-container>
+    }
+</div>

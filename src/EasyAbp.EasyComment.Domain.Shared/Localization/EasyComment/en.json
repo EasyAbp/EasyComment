@@ -18,6 +18,7 @@
     "CommentDeletionConfirmationMessage": "Are you sure to delete the comment {0}?",
     "SuccessfullyDeleted": "Successfully deleted",
     "EasyComment:001" : "Users are only allowed to edit their own comments",
-    "EasyComment:002" : "Users are only allowed to delete their own comments"
+    "EasyComment:002" : "Users are only allowed to delete their own comments",
+    "TotalComments" : "{0} comments"
   }
 }

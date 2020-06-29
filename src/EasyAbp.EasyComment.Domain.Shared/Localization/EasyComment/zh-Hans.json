@@ -19,6 +19,7 @@
     "CommentDeletionConfirmationMessage": "确定删除评论 {0}?",
     "SuccessfullyDeleted": "删除成功",
     "EasyComment:001" : "用户只能更新自己的评论",
-    "EasyComment:002" : "用户只能删除自己的评论"
+    "EasyComment:002" : "用户只能删除自己的评论",
+    "TotalComments" : "共 {0} 条评论"
   }
 }

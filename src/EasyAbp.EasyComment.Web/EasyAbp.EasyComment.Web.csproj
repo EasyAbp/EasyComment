@@ -37,8 +37,4 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\EasyComment\Comments\Components\CommentWidget\Default.cshtml" />
-  </ItemGroup>
-
 </Project>
