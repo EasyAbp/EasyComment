@@ -7,7 +7,8 @@ namespace EasyAbp.EasyComment.Comments
     public class Comment : FullAuditedEntity<Guid>, IMultiTenant
     {
         public Guid? TenantId { get; }
-        public string Topic { get; set; }
+        public string ItemType { get; }
+        public string ItemKey { get; }
         public string Content { get; }
         public Guid? ReplyTo { get; }
     }
