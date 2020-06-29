@@ -208,9 +208,9 @@ namespace EasyAbp.EasyComment.Migrations
                     DeleterId = table.Column<Guid>(nullable: true),
                     DeletionTime = table.Column<DateTime>(nullable: true),
                     TenantId = table.Column<Guid>(nullable: true),
-                    ItemType = table.Column<string>(nullable: true),
-                    ItemKey = table.Column<string>(nullable: true),
-                    Content = table.Column<string>(nullable: true),
+                    ItemType = table.Column<string>(maxLength: 256, nullable: false),
+                    ItemKey = table.Column<string>(maxLength: 256, nullable: false),
+                    Content = table.Column<string>(maxLength: 65536, nullable: false),
                     ReplyTo = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -587,6 +587,11 @@ namespace EasyAbp.EasyComment.Migrations
                 name: "IX_AbpUsers_UserName",
                 table: "AbpUsers",
                 column: "UserName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EasyCommentComments_ItemType_ItemKey",
+                table: "EasyCommentComments",
+                columns: new[] { "ItemType", "ItemKey" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

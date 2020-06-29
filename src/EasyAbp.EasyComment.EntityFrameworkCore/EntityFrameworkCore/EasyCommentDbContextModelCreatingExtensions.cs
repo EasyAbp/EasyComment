@@ -1,4 +1,4 @@
-using EasyAbp.EasyComment.Comments;
+﻿using EasyAbp.EasyComment.Comments;
 using System;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
@@ -45,10 +45,13 @@ namespace EasyAbp.EasyComment.EntityFrameworkCore
             builder.Entity<Comment>(b =>
             {
                 b.ToTable(options.TablePrefix + "Comments", options.Schema);
-                b.ConfigureByConvention(); 
-                
+                b.ConfigureByConvention();
 
-                /* Configure more properties here */
+                b.Property(c => c.ItemType).IsRequired().HasMaxLength(CommentConsts.MaxItemType);
+                b.Property(c => c.ItemKey).IsRequired().HasMaxLength(CommentConsts.MaxItemKey);
+                b.Property(c => c.Content).IsRequired().HasMaxLength(CommentConsts.MaxContentLength);
+
+                b.HasIndex(c => new {c.ItemType, c.ItemKey});
             });
         }
     }

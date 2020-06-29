@@ -11,7 +11,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace EasyAbp.EasyComment.Migrations
 {
     [DbContext(typeof(UnifiedDbContext))]
-    [Migration("20200629064211_AddComment")]
+    [Migration("20200629065446_AddComment")]
     partial class AddComment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,9 @@ namespace EasyAbp.EasyComment.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(65536);
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnName("CreationTime")
@@ -55,10 +57,14 @@ namespace EasyAbp.EasyComment.Migrations
                         .HasDefaultValue(false);
 
                     b.Property<string>("ItemKey")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("ItemType")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnName("LastModificationTime")
@@ -76,6 +82,8 @@ namespace EasyAbp.EasyComment.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ItemType", "ItemKey");
 
                     b.ToTable("EasyCommentComments");
                 });
