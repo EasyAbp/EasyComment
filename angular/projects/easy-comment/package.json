@@ -1,0 +1,8 @@
+{
+  "name": "easy-comment",
+  "version": "0.0.1",
+  "dependencies": {
+    "@abp/ng.theme.shared": "~2.9.0",
+    "easy-comment.config": "^0.0.1"
+  }
+}

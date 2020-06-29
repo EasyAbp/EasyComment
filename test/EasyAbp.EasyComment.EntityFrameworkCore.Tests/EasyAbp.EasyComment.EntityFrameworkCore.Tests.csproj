@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>EasyAbp.EasyComment</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.4" />
+    <ProjectReference Include="..\..\src\EasyAbp.EasyComment.EntityFrameworkCore\EasyAbp.EasyComment.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\EasyAbp.EasyComment.TestBase\EasyAbp.EasyComment.TestBase.csproj" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="2.9.0" />
+  </ItemGroup>
+
+</Project>

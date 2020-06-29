@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>EasyAbp.EasyComment</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="2.9.0" />
+    <ProjectReference Include="..\EasyAbp.EasyComment.Domain\EasyAbp.EasyComment.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
