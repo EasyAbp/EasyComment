@@ -13,5 +13,7 @@ namespace EasyAbp.EasyComment.Comments.Dtos
         public string Content { get; set; }
 
         public Guid? ReplyTo { get; set; }
+        
+        public string CreatorName { get; set; }
     }
 }

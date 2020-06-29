@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Volo.Abp.AutoMapper" Version="2.9.0" />
     <PackageReference Include="Volo.Abp.Ddd.Application" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.Users.Abstractions" Version="2.9.0" />
     <ProjectReference Include="..\EasyAbp.EasyComment.Application.Contracts\EasyAbp.EasyComment.Application.Contracts.csproj" />
     <ProjectReference Include="..\EasyAbp.EasyComment.Domain\EasyAbp.EasyComment.Domain.csproj" />
   </ItemGroup>

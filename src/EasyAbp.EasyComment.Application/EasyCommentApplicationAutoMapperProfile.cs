@@ -11,7 +11,9 @@ namespace EasyAbp.EasyComment
             /* You can configure your AutoMapper mapping configuration here.
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
-            CreateMap<Comment, CommentDto>();
+            CreateMap<Comment, CommentDto>()
+                .ForMember(dest => dest.CreatorName, opt => opt.Ignore())
+                ;
             CreateMap<CreateUpdateCommentDto, Comment>(MemberList.Source);
         }
     }

@@ -3,14 +3,21 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IHtmlLocalizer<EasyCommentResource> L
 
-<div class="ec-comments">
-    <i class="fa fa-comments"> @L["TotalComments", Model.TotalCount]</i>
+<abp-container class="ec-comments">
+    <abp-row>
+        <i class="fa fa-comments"> @L["TotalComments", Model.TotalCount]</i>
+    </abp-row>
+    @{ int i = 1;}
     @foreach (CommentDto comment in Model.Items)
     {
         <abp-container class="ec-comment">
-            <abp-row>@comment.CreatorId @comment.CreationTime</abp-row>
-            <p>@comment.Content</p>
+            <abp-row>
+                <a class="ec-comment-link" href="#@comment.Id">#@(i++)</a>
+                <p class="ec-creator">@comment.CreatorName</p>
+                <span class="ec-comment-time">@comment.CreationTime</span>
+            </abp-row>
+            <p class="ec-content" id="@comment.Id">@comment.Content</p>
             <hr/>
         </abp-container>
     }
-</div>
+</abp-container>

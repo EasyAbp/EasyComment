@@ -1,3 +1,27 @@
 ﻿div.ec-comments {
     margin: 10px;
 }
+
+div.ec-comment {
+    margin: 10px;
+}
+
+div.ec-comment span {
+    margin-left: 5px;
+}
+
+a.ec-comment-link {
+    margin-right: 5px;
+}
+
+p.ec-creator {
+    font-weight: bold;
+}
+
+p.ec-content {
+    line-break: anywhere;
+}
+
+span.ec-comment-time {
+    color: gray;
+}

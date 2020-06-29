@@ -6,6 +6,7 @@ using EasyAbp.EasyComment.Comments.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Threading;
 using Volo.Abp.Users;
 
 namespace EasyAbp.EasyComment.Comments
@@ -17,10 +18,12 @@ namespace EasyAbp.EasyComment.Comments
         protected override string UpdatePolicyName { get; set; } = EasyCommentPermissions.Comment.Update;
         protected override string DeletePolicyName { get; set; } = EasyCommentPermissions.Comment.Delete;
         private readonly ICommentRepository _repository;
+        private readonly IExternalUserLookupServiceProvider _userLookupServiceProvider;
 
-        public CommentAppService(ICommentRepository repository) : base(repository)
+        public CommentAppService(ICommentRepository repository, IExternalUserLookupServiceProvider userLookupServiceProvider) : base(repository)
         {
             _repository = repository;
+            _userLookupServiceProvider = userLookupServiceProvider;
         }
 
         protected override IQueryable<Comment> CreateFilteredQuery(GetListInput input)
@@ -41,6 +44,15 @@ namespace EasyAbp.EasyComment.Comments
             {
                 return base.ApplySorting(query, input);
             }
+        }
+
+        protected override CommentDto MapToGetListOutputDto(Comment entity)
+        {
+            var dto = base.MapToGetListOutputDto(entity);
+            var creator = AsyncHelper.RunSync(() => _userLookupServiceProvider.FindByIdAsync(entity.CreatorId.GetValueOrDefault()));
+            dto.CreatorName = creator.Name;
+
+            return dto;
         }
 
         [Authorize]
