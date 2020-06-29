@@ -1,0 +1,11 @@
+﻿@page
+@model EasyAbp.EasyComment.Pages.Comments
+
+<h3>Comments</h3>
+@await Component.InvokeAsync("CommentWidget", new
+{
+    ItemType = "TestItemType",
+    ItemKey = "TestItemKey"
+})
+
+

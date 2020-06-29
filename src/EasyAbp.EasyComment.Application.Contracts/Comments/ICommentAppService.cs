@@ -14,7 +14,7 @@ namespace EasyAbp.EasyComment.Comments
             CreateUpdateCommentDto,
             CreateUpdateCommentDto>
     {
-        Task<CommentDto> UpdateContent(UpdateContentInput input);
-        Task DeleteComment(Guid id);
+        Task<CommentDto> UpdateContentAsync(UpdateContentInput input);
+        Task DeleteCommentAsync(Guid id);
     }
 }

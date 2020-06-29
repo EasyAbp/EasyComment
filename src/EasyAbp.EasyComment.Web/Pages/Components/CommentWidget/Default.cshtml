@@ -1,0 +1,6 @@
+﻿@using EasyAbp.EasyComment.Comments.Dtos
+
+@foreach (CommentDto comment in Model.Items)
+{
+    <p>@comment.Content</p>
+}

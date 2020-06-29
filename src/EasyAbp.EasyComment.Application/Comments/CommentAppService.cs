@@ -44,7 +44,7 @@ namespace EasyAbp.EasyComment.Comments
         }
 
         [Authorize]
-        public virtual async Task<CommentDto> UpdateContent(UpdateContentInput input)
+        public virtual async Task<CommentDto> UpdateContentAsync(UpdateContentInput input)
         {
             var comment = await GetEntityByIdAsync(input.Id);
             if (comment.CreatorId != CurrentUser.GetId())
@@ -57,7 +57,7 @@ namespace EasyAbp.EasyComment.Comments
         }
         
         [Authorize]
-        public virtual async Task DeleteComment(Guid id)
+        public virtual async Task DeleteCommentAsync(Guid id)
         {
             var comment = await GetEntityByIdAsync(id);
             if (comment.CreatorId != CurrentUser.GetId())
