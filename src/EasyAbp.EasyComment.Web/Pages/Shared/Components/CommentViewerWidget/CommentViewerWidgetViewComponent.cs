@@ -19,9 +19,9 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
             _service = service;
         }
         
-        public async Task<IViewComponentResult> InvokeAsync(Guid id, string content, bool refreshData)
+        public async Task<IViewComponentResult> InvokeAsync(Guid id, string content, bool fromServer)
         {
-            if (refreshData)
+            if (fromServer)
             {
                 var comment = await _service.GetAsync(id);
                 content = comment.Content;

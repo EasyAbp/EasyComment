@@ -3,7 +3,7 @@
 @model EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget.CommentEditorViewModel
 @inject IHtmlLocalizer<EasyCommentResource> L
 
-<form method="post">
+<form>
     @if (Model.ShowLabel)
     {
         <label class="ec-leave-comment" asp-for="Content">@L["LeaveComment"]</label>
