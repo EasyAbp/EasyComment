@@ -1,17 +1,21 @@
-﻿$(function() {
+﻿$(function () {
     var l = abp.localization.getResource("EasyComment");
-    
+
+    var getEnclosedWidget = function (e) {
+        return e.closest(".abp-widget-wrapper");
+    };
+
     $(".ec-button-new-comment").click(function (e) {
         e.preventDefault();
 
         var form = e.currentTarget.closest("form");
         if (!$(form).valid()) return;
 
-        var widgetWrapper = $(form).closest(".abp-widget-wrapper");
+        var widget = getEnclosedWidget(form);
         var service = easyAbp.easyComment.comments.comment;
-        var itemType = $(widgetWrapper).find("#ItemType").val();
-        var itemKey = $(widgetWrapper).find("#ItemKey").val();
-        var content = $(widgetWrapper).find(".ec-textarea-new-comment").val();
+        var itemType = $(widget).find("#ItemType").val();
+        var itemKey = $(widget).find("#ItemKey").val();
+        var content = $(widget).find(".ec-textarea-new-comment").val();
 
         service.addComment({
             itemType: itemType,
@@ -21,10 +25,19 @@
         })
             .then(function () {
                 abp.notify.info(l("SuccessfullyPublishComment"));
-                var widgetManager = new abp.WidgetManager($(widgetWrapper).parent());
+                var widgetManager = new abp.WidgetManager($(widget).parent());
                 widgetManager.init();
                 widgetManager.refresh();
             });
+    });
+
+    $(".ec-edit-comment").click(function (e) {
+        var content = $(e.currentTarget).closest(".ec-comment").find("p.ec-content").text();
+        var widget = getEnclosedWidget($(e.currentTarget));
+
+        var textarea = widget.find("textarea.ec-textarea-new-comment");
+        textarea.val(content);
+        textarea.focus();
     })
 })
 

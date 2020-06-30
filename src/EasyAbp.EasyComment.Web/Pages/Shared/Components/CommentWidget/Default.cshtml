@@ -26,18 +26,18 @@
                 </abp-column>
                 <abp-column size="_6" class="text-right">
                     <abp-dropdown>
-                        <abp-dropdown-button button-type="Light" class="" text="..." size="Medium"/>
+                        <abp-dropdown-button button-type="Light" text="..." size="Medium"/>
                         <abp-dropdown-menu>
                             @if (comment.CreatorId == CurrentUser.GetId())
                             {
-                                <abp-dropdown-item href="#">@L["Edit"]</abp-dropdown-item>
+                                <abp-dropdown-item class="ec-edit-comment" >@L["Edit"]</abp-dropdown-item>
                             }
-                            <abp-dropdown-item href="#">@L["Reply"]</abp-dropdown-item>
-                            <abp-dropdown-item href="#">@L["Reference"]</abp-dropdown-item>
+                            <abp-dropdown-item class="ec-reply-comment">@L["Reply"]</abp-dropdown-item>
+                            <abp-dropdown-item class="ec-reference-comment">@L["Reference"]</abp-dropdown-item>
                             @if (comment.CreatorId == CurrentUser.GetId())
                             {
                                 <abp-dropdown-divider/>
-                                <abp-dropdown-item href="#">@L["Remove"]</abp-dropdown-item>
+                                <abp-dropdown-item class="ec-remove-comment">@L["Remove"]</abp-dropdown-item>
                             }
                         </abp-dropdown-menu>
                     </abp-dropdown>
@@ -52,10 +52,11 @@
         <form method="post">
             <label class="ec-leave-comment" asp-for="Content">@L["LeaveComment"]</label>
             <abp-input class="ec-textarea-new-comment" asp-for="Content" rows="5" no-label></abp-input>
-            <abp-button class="ec-button-new-comment" type="submit" button-type="Info" text="@L["SubmitComment"].Value"/>
+            <abp-button class="ec-button-new-comment" type="submit" button-type="Info" text="@L["PublishComment"].Value"/>
         </form>
     }
     else
     {
+        // TODO
     }
 </abp-container>

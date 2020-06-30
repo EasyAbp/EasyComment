@@ -16,6 +16,7 @@
 
 .ec-content {
     line-break: anywhere;
+    white-space: pre-wrap;
 }
 
 .ec-comment-time {
@@ -36,4 +37,9 @@
 .dropdown-toggle::after {
     border: none;
     content: none;
+}
+
+.ec-button-new-comment {
+    margin-bottom: 20px;
+    float: right;
 }
