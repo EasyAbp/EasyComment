@@ -9,7 +9,7 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
         [Route("comments")]
         public IActionResult Comments(string itemType, string itemKey)
         {
-            return ViewComponent("CommentWidget", new {itemType, itemKey});
+            return ViewComponent("CommentsWidget", new {itemType, itemKey});
         } 
     }
 }

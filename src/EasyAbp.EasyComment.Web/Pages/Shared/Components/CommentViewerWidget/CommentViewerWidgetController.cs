@@ -8,9 +8,9 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
     {
         [HttpGet]
         [Route("showCommentViewer")]
-        public IActionResult ShowCommentViewer(Guid id, string content)
+        public IActionResult ShowCommentViewer(Guid id, string content, bool refreshData)
         {
-            return ViewComponent("CommentViewerViewModel", new {id, content});
+            return ViewComponent("CommentViewerWidget", new {id, content, refreshData});
         }
     }
 }
