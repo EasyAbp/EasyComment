@@ -56,6 +56,18 @@ namespace EasyAbp.EasyComment.Comments
         }
 
         [Authorize]
+        public virtual async Task<CommentDto> AddCommentAsync(CreateUpdateCommentDto input)
+        {
+            var entity = MapToEntity(input);
+
+            TryToSetTenantId(entity);
+
+            await Repository.InsertAsync(entity, autoSave: true);
+
+            return MapToGetOutputDto(entity);
+        }
+
+        [Authorize]
         public virtual async Task<CommentDto> UpdateContentAsync(UpdateContentInput input)
         {
             var comment = await GetEntityByIdAsync(input.Id);
@@ -69,7 +81,7 @@ namespace EasyAbp.EasyComment.Comments
         }
         
         [Authorize]
-        public virtual async Task DeleteCommentAsync(Guid id)
+        public virtual async Task RemoveCommentAsync(Guid id)
         {
             var comment = await GetEntityByIdAsync(id);
             if (comment.CreatorId != CurrentUser.GetId())

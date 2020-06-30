@@ -11,7 +11,7 @@
     "Comment": "Comment",
     "CommentItemType": "Item Type",
     "CommentItemKey": "Item Key",
-    "CommentContent": "Content",
+    "CommentContent": "Comment Content",
     "CommentReplyTo": "Reply To",
     "CreateComment": "Create Comment",
     "EditComment": "Edit Comment",
@@ -19,6 +19,10 @@
     "SuccessfullyDeleted": "Successfully deleted",
     "EasyComment:001" : "Users are only allowed to edit their own comments",
     "EasyComment:002" : "Users are only allowed to delete their own comments",
-    "TotalComments" : "{0} comments"
+    "TotalComments" : "{0} comments",
+    "SubmitComment": "Submit",
+    "LeaveComment": "Leave Comment",
+    "NeedCommentContent": "Please enter the content",
+    "SuccessfullyPublishComment": "Comment published successfully"
   }
 }

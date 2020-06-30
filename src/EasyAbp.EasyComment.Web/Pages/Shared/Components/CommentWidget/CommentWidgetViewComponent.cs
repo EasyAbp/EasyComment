@@ -28,7 +28,12 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget
                 ItemType = itemType,
                 ItemKey = itemKey,
             });
-            return View(comments);
+            return View(new CommentWidgetViewModel
+            {
+                ItemType = itemType,
+                ItemKey = itemKey,
+                Comments = comments,
+            });
         }
     }
 }

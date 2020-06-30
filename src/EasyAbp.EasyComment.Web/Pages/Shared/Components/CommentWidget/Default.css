@@ -23,7 +23,11 @@
     margin-left: 5px;
 }
 
-.ec-new-comment {
+.ec-leave-comment {
     margin-top: 20px;
+    font-size: medium;
+}
+
+.ec-textarea-new-comment {
     width:100%;
 }

@@ -2,15 +2,18 @@
 @using EasyAbp.EasyComment.Localization
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Volo.Abp.Users
+@model EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget.CommentWidgetViewModel
 @inject IHtmlLocalizer<EasyCommentResource> L
 @inject ICurrentUser CurrentUser
 
 <abp-container class="ec-comments">
+    <abp-input asp-for="ItemType"></abp-input>
+    <abp-input asp-for="ItemKey"></abp-input>
     <abp-row>
-        <i class="fa fa-comments"> @L["TotalComments", Model.TotalCount]</i>
+        <i class="fa fa-comments"> @L["TotalComments", Model.Comments.TotalCount]</i>
     </abp-row>
     @{ int i = 1; }
-    @foreach (CommentDto comment in Model.Items)
+    @foreach (CommentDto comment in Model.Comments.Items)
     {
         <abp-container class="ec-comment">
             <abp-row>
@@ -24,8 +27,11 @@
     }
     @if (CurrentUser.IsAuthenticated)
     {
-        <textarea class="ec-new-comment" id="new-comment" name="new-comment" rows="5"></textarea>
-        <abp-button type="primary"/>
+        <form method="post">
+            <label class="ec-leave-comment" asp-for="Content">@L["LeaveComment"]</label>
+            <abp-input class="ec-textarea-new-comment" asp-for="Content" rows="5" no-label></abp-input>
+            <abp-button class="ec-button-new-comment" type="submit" button-type="Info" text="@L["SubmitComment"].Value"/>
+        </form>
     }
     else
     {

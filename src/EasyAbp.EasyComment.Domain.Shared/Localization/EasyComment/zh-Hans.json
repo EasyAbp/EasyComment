@@ -12,7 +12,7 @@
     "Comment": "评论",
     "CommentItemType": "项目类型",
     "CommentItemKey": "项目键值",
-    "CommentContent": "内容",
+    "CommentContent": "评论内容",
     "CommentReplyTo": "回复给",
     "CreateComment": "创建评论",
     "EditComment": "编辑评论",
@@ -20,6 +20,10 @@
     "SuccessfullyDeleted": "删除成功",
     "EasyComment:001" : "用户只能更新自己的评论",
     "EasyComment:002" : "用户只能删除自己的评论",
-    "TotalComments" : "共 {0} 条评论"
+    "TotalComments" : "共 {0} 条评论",
+    "SubmitComment": "提交评论",
+    "LeaveComment": "发表评论",
+    "NeedCommentContent": "请输入评论内容",
+    "SuccessfullyPublishComment": "发表评论成功"
   }
 }
