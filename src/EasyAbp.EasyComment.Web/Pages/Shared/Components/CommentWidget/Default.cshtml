@@ -1,5 +1,7 @@
 ﻿@using EasyAbp.EasyComment.Comments.Dtos
 @using EasyAbp.EasyComment.Localization
+@using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
+@using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Volo.Abp.Users
 @model EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget.CommentWidgetViewModel
@@ -43,15 +45,24 @@
                     </abp-dropdown>
                 </abp-column>
             </abp-row>
-            <p class="ec-content" id="@comment.Id">@comment.Content</p>
+            @await Component.InvokeAsync("CommentViewerWidget", new CommentViewerViewModel
+            {
+                Id = comment.Id,
+                ItemType =  comment.ItemType,
+                ItemKey = comment.ItemKey,
+                Content = comment.Content,
+            })
             <hr/>
         </abp-container>
     }
     @if (CurrentUser.IsAuthenticated)
     {
         <form method="post">
-            <label class="ec-leave-comment" asp-for="Content">@L["LeaveComment"]</label>
-            <abp-input class="ec-textarea-new-comment" asp-for="Content" rows="5" no-label></abp-input>
+            @await Component.InvokeAsync("CommentEditorWidget", new CommentEditorViewModel
+            {
+                ShowLabel = true,
+                Content = String.Empty,
+            })
             <abp-button class="ec-button-new-comment" type="submit" button-type="Info" text="@L["PublishComment"].Value"/>
         </form>
     }

@@ -1,0 +1,10 @@
+﻿@using EasyAbp.EasyComment.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget.CommentEditorViewModel
+@inject IHtmlLocalizer<EasyCommentResource> L
+
+@if (Model.ShowLabel)
+{
+    <label class="ec-leave-comment" asp-for="Content">@L["LeaveComment"]</label>
+}
+<abp-input class="ec-textarea-new-comment" asp-for="Content" rows="5" no-label></abp-input>
