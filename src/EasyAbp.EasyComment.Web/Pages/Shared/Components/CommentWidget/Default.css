@@ -2,26 +2,28 @@
     margin: 10px;
 }
 
-div.ec-comment {
+.ec-comment {
     margin: 10px;
 }
 
-div.ec-comment span {
-    margin-left: 5px;
-}
-
-a.ec-comment-link {
+.ec-comment-link {
     margin-right: 5px;
 }
 
-p.ec-creator {
+.ec-creator {
     font-weight: bold;
 }
 
-p.ec-content {
+.ec-content {
     line-break: anywhere;
 }
 
-span.ec-comment-time {
+.ec-comment-time {
     color: gray;
+    margin-left: 5px;
+}
+
+.ec-new-comment {
+    margin-top: 20px;
+    width:100%;
 }

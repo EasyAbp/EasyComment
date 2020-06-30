@@ -8,7 +8,7 @@ using Volo.Abp.Application.Dtos;
 namespace EasyAbp.EasyComment.Comments
 {
     [RemoteService(Name = "CommentService")]
-    [Route("/api/EasyComment/comment")]
+    [Route("/api/easyComment/comment")]
     public class CommentController : EasyCommentController, ICommentAppService
     {
         private readonly ICommentAppService _service;

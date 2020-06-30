@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
 
-namespace EasyAbp.EasyComment.Web.Pages.Components.CommentWidget
+namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget
 {
     [Widget(
-        StyleFiles = new[] {"/Pages/Components/CommentWidget/Default.css"}
+        RefreshUrl = "/widgets/easyComment/comments",
+        ScriptFiles = new[]{"/Pages/Shared/Components/CommentWidget/Default.js"},
+        StyleFiles = new[] {"/Pages/Shared/Components/CommentWidget/Default.css"}
     )]
     public class CommentWidgetViewComponent : AbpViewComponent
     {
