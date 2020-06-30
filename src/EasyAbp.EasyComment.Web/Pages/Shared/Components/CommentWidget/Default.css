@@ -31,3 +31,9 @@
 .ec-textarea-new-comment {
     width:100%;
 }
+
+/*Remove the arrow of dropdowns */
+.dropdown-toggle::after {
+    border: none;
+    content: none;
+}

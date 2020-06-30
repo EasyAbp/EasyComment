@@ -17,9 +17,31 @@
     {
         <abp-container class="ec-comment">
             <abp-row>
-                <a class="ec-comment-link" href="#@comment.Id">#@(i++)</a>
-                <p class="ec-creator">@comment.CreatorName</p>
-                <time class="ec-comment-time" datetime="@comment.CreationTime">@comment.CreationTime</time>
+                <abp-column size="_6">
+                    <abp-row>
+                        <a class="ec-comment-link" href="#@comment.Id">#@(i++)</a>
+                        <p class="ec-creator">@comment.CreatorName</p>
+                        <time class="ec-comment-time" datetime="@comment.CreationTime">@comment.CreationTime</time>
+                    </abp-row>
+                </abp-column>
+                <abp-column size="_6" class="text-right">
+                    <abp-dropdown>
+                        <abp-dropdown-button button-type="Light" class="" text="..." size="Medium"/>
+                        <abp-dropdown-menu>
+                            @if (comment.CreatorId == CurrentUser.GetId())
+                            {
+                                <abp-dropdown-item href="#">@L["Edit"]</abp-dropdown-item>
+                            }
+                            <abp-dropdown-item href="#">@L["Reply"]</abp-dropdown-item>
+                            <abp-dropdown-item href="#">@L["Reference"]</abp-dropdown-item>
+                            @if (comment.CreatorId == CurrentUser.GetId())
+                            {
+                                <abp-dropdown-divider/>
+                                <abp-dropdown-item href="#">@L["Remove"]</abp-dropdown-item>
+                            }
+                        </abp-dropdown-menu>
+                    </abp-dropdown>
+                </abp-column>
             </abp-row>
             <p class="ec-content" id="@comment.Id">@comment.Content</p>
             <hr/>

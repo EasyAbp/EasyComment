@@ -23,6 +23,9 @@
     "SubmitComment": "Submit",
     "LeaveComment": "Leave Comment",
     "NeedCommentContent": "Please enter the content",
-    "SuccessfullyPublishComment": "Comment published successfully"
+    "SuccessfullyPublishComment": "Comment published successfully",
+    "Remove": "Delete",
+    "Reference": "Reference",
+    "Reply": "Reply",
   }
 }
