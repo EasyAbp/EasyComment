@@ -39,7 +39,11 @@
     content: none;
 }
 
-.ec-button-new-comment {
+.ec-button-publish {
     margin-bottom: 20px;
     float: right;
+}
+
+.ec-button-group-edit {
+    float : right;
 }

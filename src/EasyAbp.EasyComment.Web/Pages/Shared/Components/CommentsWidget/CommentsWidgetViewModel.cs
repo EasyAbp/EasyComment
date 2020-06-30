@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 
-namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget
+namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
 {
-    public class CommentWidgetViewModel
+    public class CommentsWidgetViewModel
     {
         [HiddenInput]
         public string ItemType { get; set; }

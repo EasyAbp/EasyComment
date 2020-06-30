@@ -1,17 +1,17 @@
 ﻿$(function () {
     var l = abp.localization.getResource("EasyComment");
 
-    var getEnclosedWidget = function (e) {
-        return e.closest(".abp-widget-wrapper");
+    var getCommentWidget = function (e) {
+        return e.parents(".abp-widget-wrapper").last();
     };
-
-    $(".ec-button-new-comment").click(function (e) {
+    
+    $(".ec-button-publish").click(function (e) {
         e.preventDefault();
 
-        var form = e.currentTarget.closest("form");
+        var form = $(this).closest("form");
         if (!$(form).valid()) return;
 
-        var widget = getEnclosedWidget(form);
+        var widget = getCommentWidget(form);
         var service = easyAbp.easyComment.comments.comment;
         var itemType = $(widget).find("#ItemType").val();
         var itemKey = $(widget).find("#ItemKey").val();
@@ -31,13 +31,17 @@
             });
     });
 
-    $(".ec-edit-comment").click(function (e) {
-        var content = $(e.currentTarget).closest(".ec-comment").find("p.ec-content").text();
-        var widget = getEnclosedWidget($(e.currentTarget));
-
-        var textarea = widget.find("textarea.ec-textarea-new-comment");
-        textarea.val(content);
-        textarea.focus();
+    $(".ec-edit-comment").click(function () {
+        var commentDiv = $(this).closest(".ec-comment");
+        var commentId = commentDiv.attr("data-comment-id");
+        
+        $.get("/widgets/easyComment/showCommentEditor", {
+            id: commentId,
+            showLabel: false,
+            editModel: true,
+        }, function (html) {
+            commentDiv.find(".ec-comment-holder").html(html);
+        })
     })
 })
 

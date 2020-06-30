@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget
+namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
 {
     [Route("/widgets/easyComment")]
-    public class CommentWidgetController : EasyCommentController
+    public class CommentsWidgetController : EasyCommentController
     {
         [HttpGet]
         [Route("comments")]

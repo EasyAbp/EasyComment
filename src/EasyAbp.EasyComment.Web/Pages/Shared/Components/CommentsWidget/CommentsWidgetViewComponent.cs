@@ -5,18 +5,18 @@ using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
 
-namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget
+namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
 {
     [Widget(
         RefreshUrl = "/widgets/easyComment/comments",
-        ScriptFiles = new[]{"/Pages/Shared/Components/CommentWidget/Default.js"},
-        StyleFiles = new[] {"/Pages/Shared/Components/CommentWidget/Default.css"}
+        ScriptFiles = new[]{"/Pages/Shared/Components/CommentsWidget/Default.js"},
+        StyleFiles = new[] {"/Pages/Shared/Components/CommentsWidget/Default.css"}
     )]
-    public class CommentWidgetViewComponent : AbpViewComponent
+    public class CommentsWidgetViewComponent : AbpViewComponent
     {
         private readonly ICommentAppService _service;
 
-        public CommentWidgetViewComponent(ICommentAppService service)
+        public CommentsWidgetViewComponent(ICommentAppService service)
         {
             _service = service;
         }
@@ -28,7 +28,7 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget
                 ItemType = itemType,
                 ItemKey = itemKey,
             });
-            return View(new CommentWidgetViewModel
+            return View(new CommentsWidgetViewModel
             {
                 ItemType = itemType,
                 ItemKey = itemKey,

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 
 namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
@@ -11,5 +12,7 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
         [TextArea]
         [Display(Name = "CommentContent")]
         public string Content { get; set; }
+
+        public bool EditModel { get; set; }
     }
 }

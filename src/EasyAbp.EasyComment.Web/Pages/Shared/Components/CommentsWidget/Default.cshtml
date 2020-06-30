@@ -4,7 +4,7 @@
 @using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Volo.Abp.Users
-@model EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget.CommentWidgetViewModel
+@model EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget.CommentsWidgetViewModel
 @inject IHtmlLocalizer<EasyCommentResource> L
 @inject ICurrentUser CurrentUser
 
@@ -17,7 +17,7 @@
     @{ int i = 1; }
     @foreach (CommentDto comment in Model.Comments.Items)
     {
-        <abp-container class="ec-comment">
+        <abp-container class="ec-comment" data-comment-id="@comment.Id">
             <abp-row>
                 <abp-column size="_6">
                     <abp-row>
@@ -32,7 +32,7 @@
                         <abp-dropdown-menu>
                             @if (comment.CreatorId == CurrentUser.GetId())
                             {
-                                <abp-dropdown-item class="ec-edit-comment" >@L["Edit"]</abp-dropdown-item>
+                                <abp-dropdown-item class="ec-edit-comment">@L["Edit"]</abp-dropdown-item>
                             }
                             <abp-dropdown-item class="ec-reply-comment">@L["Reply"]</abp-dropdown-item>
                             <abp-dropdown-item class="ec-reference-comment">@L["Reference"]</abp-dropdown-item>
@@ -45,26 +45,19 @@
                     </abp-dropdown>
                 </abp-column>
             </abp-row>
-            @await Component.InvokeAsync("CommentViewerWidget", new CommentViewerViewModel
-            {
-                Id = comment.Id,
-                ItemType =  comment.ItemType,
-                ItemKey = comment.ItemKey,
-                Content = comment.Content,
-            })
+            <div class="ec-comment-holder">
+                @await Component.InvokeAsync("CommentViewerWidget", new {Id = comment.Id, Content = comment.Content,})
+            </div>
             <hr/>
         </abp-container>
     }
     @if (CurrentUser.IsAuthenticated)
     {
-        <form method="post">
-            @await Component.InvokeAsync("CommentEditorWidget", new CommentEditorViewModel
-            {
-                ShowLabel = true,
-                Content = String.Empty,
-            })
-            <abp-button class="ec-button-new-comment" type="submit" button-type="Info" text="@L["PublishComment"].Value"/>
-        </form>
+        @await Component.InvokeAsync("CommentEditorWidget", new
+        {
+            ShowLabel = true,
+            Content = String.Empty,
+        })
     }
     else
     {

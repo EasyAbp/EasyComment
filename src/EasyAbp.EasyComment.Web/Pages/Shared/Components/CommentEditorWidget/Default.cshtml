@@ -3,8 +3,22 @@
 @model EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget.CommentEditorViewModel
 @inject IHtmlLocalizer<EasyCommentResource> L
 
-@if (Model.ShowLabel)
-{
-    <label class="ec-leave-comment" asp-for="Content">@L["LeaveComment"]</label>
-}
-<abp-input class="ec-textarea-new-comment" asp-for="Content" rows="5" no-label></abp-input>
+<form method="post">
+    @if (Model.ShowLabel)
+    {
+        <label class="ec-leave-comment" asp-for="Content">@L["LeaveComment"]</label>
+    }
+    <abp-input class="ec-textarea-new-comment" asp-for="Content" rows="5" no-label></abp-input>
+    @if (Model.EditModel)
+    {
+        <div class="ec-button-group-edit">
+            <abp-button class="ec-button-cancel" type="button" button-type="Secondary" text="@L["Cancel"].Value"/>
+            <abp-button class="ec-button-edit" type="submit" button-type="Primary" text="@L["Save"].Value"/>
+        </div>
+    }
+    else
+    {
+        <abp-button class="ec-button-publish" type="submit" button-type="Info" text="@L["PublishComment"].Value"/>
+    }
+</form>
+<div style="clear: both;"></div>
