@@ -18,23 +18,21 @@
     @{ int i = 1; }
     @foreach (CommentDto comment in Model.Comments.Items)
     {
-        <abp-container class="ec-comment" data-comment-id="@comment.Id">
+        <abp-container class="ec-comment" data-comment-id="@comment.Id" data-creator-id="@comment.CreatorId">
             <abp-row>
-                <abp-column size="_6">
+                <abp-column size="_10">
                     <abp-row>
                         <a class="ec-comment-link" href="#@comment.Id">#@(i++)</a>
+                        <p class="ec-user-name">@comment.CreatorName</p>
                         @if (comment.ReplyTo.HasValue)
                         {
-                            <p class="ec-user-name">@L["ReplyTo", comment.CreatorName, comment.ReplyToName]</p>
-                        }
-                        else
-                        {
-                            <p class="ec-user-name">@comment.CreatorName</p>
+                            <span class="ec-reply-to">@L["ReplyTo"]</span>
+                            <p class="ec-user-name">@comment.ReplyToName</p>
                         }
                         <time class="ec-comment-time" datetime="@comment.CreationTime">@comment.CreationTime</time>
                     </abp-row>
                 </abp-column>
-                <abp-column size="_6" class="text-right">
+                <abp-column size="_2" class="text-right">
                     @if (CurrentUser.IsAuthenticated)
                     {
                         <abp-dropdown>

@@ -47,3 +47,7 @@
 .ec-editor-button-group {
     float : right;
 }
+
+.ec-reply-to {
+    margin: 0 5px;
+}

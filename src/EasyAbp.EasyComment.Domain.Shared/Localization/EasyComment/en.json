@@ -25,9 +25,10 @@
     "NeedCommentContent": "Please enter the content",
     "SuccessfullyPublishComment": "Comment published successfully",
     "SuccessfullyEditComment": "Comment edited successfully",
+    "SuccessfullyReplyComment": "Comment replied successfully",
     "Remove": "Delete",
     "Reference": "Reference",
     "Reply": "Reply",
-    "ReplyTo": "{0} replies to {1}"
+    "ReplyTo": "replies to"
   }
 }
