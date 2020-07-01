@@ -10,11 +10,11 @@
     margin-right: 5px;
 }
 
-.ec-creator {
+.ec-user-name {
     font-weight: bold;
 }
 
-.ec-content {
+.ec-viewer-content {
     line-break: anywhere;
     white-space: pre-wrap;
 }
@@ -24,12 +24,12 @@
     margin-left: 5px;
 }
 
-.ec-leave-comment {
+.ec-editor-label {
     margin-top: 20px;
     font-size: medium;
 }
 
-.ec-textarea-new-comment {
+.ec-editor-textarea {
     width:100%;
 }
 
@@ -39,11 +39,11 @@
     content: none;
 }
 
-.ec-button-publish {
+.ec-editor-button-publish {
     margin-bottom: 20px;
     float: right;
 }
 
-.ec-button-group-edit {
+.ec-editor-button-group {
     float : right;
 }

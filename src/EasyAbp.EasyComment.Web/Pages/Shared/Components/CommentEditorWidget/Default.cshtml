@@ -6,19 +6,19 @@
 <form>
     @if (!Model.Label.IsNullOrEmpty())
     {
-        <label class="ec-leave-comment" asp-for="Content">@L["LeaveComment"]</label>
+        <label class="ec-editor-label" asp-for="Content">@Model.Label</label>
     }
-    <abp-input class="ec-textarea-new-comment" asp-for="Content" rows="5" no-label></abp-input>
+    <abp-input class="ec-editor-textarea" asp-for="Content" rows="5" no-label></abp-input>
     @if (Model.EditModel)
     {
-        <div class="ec-button-group-edit">
-            <abp-button class="ec-button-cancel" type="button" button-type="Secondary" text="@L["Cancel"].Value"/>
-            <abp-button class="ec-button-edit" type="submit" button-type="Primary" text="@L["Save"].Value"/>
+        <div class="ec-editor-button-group">
+            <abp-button class="ec-editor-button-cancel" type="button" button-type="Secondary" text="@L["Cancel"].Value"/>
+            <abp-button class="ec-editor-button-save" type="submit" button-type="Primary" text="@L["Save"].Value"/>
         </div>
     }
     else
     {
-        <abp-button class="ec-button-publish" type="submit" button-type="Info" text="@L["PublishComment"].Value"/>
+        <abp-button class="ec-editor-button-publish" type="submit" button-type="Info" text="@L["PublishComment"].Value"/>
     }
 </form>
 <div style="clear: both;"></div>

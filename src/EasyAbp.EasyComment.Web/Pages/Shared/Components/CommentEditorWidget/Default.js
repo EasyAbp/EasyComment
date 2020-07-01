@@ -1,7 +1,7 @@
 ﻿(function () {
     abp.widgets.CommentEditorWidget = function ($wrapper) {
         var getContent = function () {
-            return $wrapper.find(".ec-textarea-new-comment").val()
+            return $wrapper.find(".ec-editor-textarea").val()
         }
         
         return {

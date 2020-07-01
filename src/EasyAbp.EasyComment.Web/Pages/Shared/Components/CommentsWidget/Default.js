@@ -2,7 +2,7 @@
     const l = abp.localization.getResource("EasyComment");
     const service = easyAbp.easyComment.comments.comment;
 
-    $(".ec-button-publish").click(function (e) {
+    $(".ec-editor-button-publish").click(function (e) {
         e.preventDefault();
 
         const form = $(this).closest("form");
@@ -10,8 +10,8 @@
 
         const commentsWidget = $(form).closest("[data-widget-name=CommentsWidget]");
         const widgetManager = new abp.WidgetManager({wrapper: $(commentsWidget).parent()});
-        widgetManager.init();   
-        
+        widgetManager.init();
+
         const itemType = $(commentsWidget).find("#ItemType").val();
         const itemKey = $(commentsWidget).find("#ItemKey").val();
         const editorWidget = $(form).closest("[data-widget-name=CommentEditorWidget]");
@@ -46,7 +46,6 @@
         viewerWidget.hide();
         $.get("/widgets/easyComment/showCommentEditor", {
             id: commentId,
-            showLabel: false,
             editModel: true,
         }, function (html) {
             commentDiv.find(".ec-comment-holder").append(html);
@@ -63,10 +62,10 @@
         commentDiv.find(".dropdown").show();
     };
 
-    $(document).on("click", ".ec-button-cancel", function () {
+    $(document).on("click", ".ec-editor-button-cancel", function () {
         const commentDiv = $(this).closest(".ec-comment");
         const form = $(this).closest("form");
-        
+
         if ($(form).data('changed')) {
             abp.message.confirm(l("AreYouSureYouWantToCancelEditingWarningMessage"))
                 .done(function (result) {
@@ -79,19 +78,19 @@
         }
     });
 
-    $(document).on("click", ".ec-button-edit", function (e) {
+    $(document).on("click", ".ec-editor-button-save", function (e) {
         e.preventDefault();
 
         const commentDiv = $(this).closest(".ec-comment");
-        const form = $(this).closest("form"); 
-        
+        const form = $(this).closest("form");
+
         if (!$(form).valid()) return;
-        
+
         if (!$(form).data('changed')) {
             cancelEdit(commentDiv);
             return;
         }
-        
+
         const commentId = commentDiv.attr("data-comment-id");
         const viewerWidget = getViewerWidget(commentDiv);
         const editorWidget = getEditorWidget(commentDiv);
@@ -114,5 +113,19 @@
             widgetManager.refresh();
             abp.notify.info(l("SuccessfullyEditComment"));
         })
+    });
+
+    $(document).on("click", ".ec-action-reply", function () {
+        const commentDiv = $(this).closest(".ec-comment");
+        const commentId = commentDiv.attr("data-comment-id");
+        const viewerWidget = getViewerWidget(commentDiv);
+
+        $(this).closest(".dropdown").hide();
+        $.get("/widgets/easyComment/showCommentEditor", {
+            label: l("Reply"),
+            editModel: true,
+        }, function (html) {
+            commentDiv.find(".ec-comment-holder").append(html);
+        }) 
     });
 })
