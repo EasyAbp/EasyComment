@@ -1,12 +1,13 @@
 ﻿@using EasyAbp.EasyComment.Comments.Dtos
 @using EasyAbp.EasyComment.Localization
-@using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
-@using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
+@using EasyAbp.EasyComment.Permissions
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Volo.Abp.Users
 @model EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget.CommentsWidgetViewModel
 @inject IHtmlLocalizer<EasyCommentResource> L
 @inject ICurrentUser CurrentUser
+@inject IAuthorizationService Authorization
 
 <abp-container class="ec-comments">
     <abp-input asp-for="ItemType"></abp-input>
@@ -32,13 +33,15 @@
                         <abp-dropdown>
                             <abp-dropdown-button button-type="Light" text="..." size="Medium"/>
                             <abp-dropdown-menu>
-                                @if (comment.CreatorId == CurrentUser.GetId())
+                                @if (comment.CreatorId == CurrentUser.GetId() ||
+                                     await Authorization.IsGrantedAsync(EasyCommentPermissions.Comment.Update))
                                 {
                                     <abp-dropdown-item class="ec-action-edit">@L["Edit"]</abp-dropdown-item>
                                 }
                                 <abp-dropdown-item class="ec-action-reply">@L["Reply"]</abp-dropdown-item>
                                 <abp-dropdown-item class="ec-action-reference">@L["Reference"]</abp-dropdown-item>
-                                @if (comment.CreatorId == CurrentUser.GetId())
+                                @if (comment.CreatorId == CurrentUser.GetId() ||
+                                     await Authorization.IsGrantedAsync(EasyCommentPermissions.Comment.Delete))
                                 {
                                     <abp-dropdown-divider/>
                                     <abp-dropdown-item class="ec-action-remove">@L["Remove"]</abp-dropdown-item>

@@ -71,7 +71,7 @@ namespace EasyAbp.EasyComment.Comments
         public virtual async Task<CommentDto> UpdateContentAsync(UpdateContentInput input)
         {
             var comment = await GetEntityByIdAsync(input.Id);
-            if (comment.CreatorId != CurrentUser.GetId())
+            if (comment.CreatorId != CurrentUser.GetId() && !await AuthorizationService.IsGrantedAsync(EasyCommentPermissions.Comment.Update))
             {
                 throw new BusinessException(EasyCommentErrorCodes.OnlyOwnedCommentEditAllowed);
             }
@@ -84,7 +84,7 @@ namespace EasyAbp.EasyComment.Comments
         public virtual async Task RemoveCommentAsync(Guid id)
         {
             var comment = await GetEntityByIdAsync(id);
-            if (comment.CreatorId != CurrentUser.GetId())
+            if (comment.CreatorId != CurrentUser.GetId() && !await AuthorizationService.IsGrantedAsync(EasyCommentPermissions.Comment.Delete))
             {
                 throw new BusinessException(EasyCommentErrorCodes.OnlyOwnedCommentDeleteAllowed);
             }
