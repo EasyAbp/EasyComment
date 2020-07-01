@@ -1,21 +1,17 @@
 ﻿$(function () {
-    var l = abp.localization.getResource("EasyComment");
-
-    var getCommentWidget = function (e) {
-        return e.parents(".abp-widget-wrapper").last();
-    };
+    const l = abp.localization.getResource("EasyComment");
+    const service = easyAbp.easyComment.comments.comment;
 
     $(".ec-button-publish").click(function (e) {
         e.preventDefault();
 
-        var form = $(this).closest("form");
+        const form = $(this).closest("form");
         if (!$(form).valid()) return;
 
-        var widget = getCommentWidget(form);
-        var service = easyAbp.easyComment.comments.comment;
-        var itemType = $(widget).find("#ItemType").val();
-        var itemKey = $(widget).find("#ItemKey").val();
-        var content = $(widget).find(".ec-textarea-new-comment").val();
+        const commentsWidget = form.closest("[data-widget-name=CommentsWidget]");
+        const itemType = $(commentsWidget).find("#ItemType").val();
+        const itemKey = $(commentsWidget).find("#ItemKey").val();
+        const content = $(commentsWidget).find(".ec-textarea-new-comment").val();   // TODO: a generic way of getting content from editor
 
         service.addComment({
             itemType: itemType,
@@ -24,23 +20,27 @@
             // TODO: replyTo: replyTo
         })
             .then(function () {
-                abp.notify.info(l("SuccessfullyPublishComment"));
-                var widgetManager = new abp.WidgetManager($(widget).parent());
+                const widgetManager = new abp.WidgetManager({wrapper: $(commentsWidget).parent()});
                 widgetManager.init();
                 widgetManager.refresh();
+                abp.notify.info(l("SuccessfullyPublishComment"));
             });
     });
 
-    $(document).on("change", "form :input", function () {
-        $(this).closest('form').data('changed', true);
-    })
+    const getViewerWidget = function (commentDiv) {
+        return commentDiv.find(".ec-comment-holder [data-widget-name=CommentViewerWidget]")
+    };
+    
+    const getEditorWidget = function (commentDiv) {
+        return commentDiv.find(".ec-comment-holder [data-widget-name=CommentEditorWidget]")
+    };
 
-    $(".ec-edit-comment").click(function () {
-        var commentDiv = $(this).closest(".ec-comment");
-        var commentHolder = commentDiv.find(".ec-comment-holder");
-        var commentId = commentDiv.attr("data-comment-id");
+    $(document).on("click", ".ec-action-edit", function () {
+        const commentDiv = $(this).closest(".ec-comment");
+        const commentId = commentDiv.attr("data-comment-id");
+        const viewerWidget = getViewerWidget(commentDiv);
 
-        commentHolder.find("[data-widget-name=CommentViewerWidget]").hide();
+        viewerWidget.hide();
         $.get("/widgets/easyComment/showCommentEditor", {
             id: commentId,
             showLabel: false,
@@ -50,15 +50,18 @@
         })
     });
 
+    $(document).on("change", "form :input", function () {
+        $(this).closest('form').data('changed', true);
+    })
+
     $(document).on("click", ".ec-button-cancel", function () {
-        var btnCancel = $(this);
-        
-        var cancelEdit = function () {
-            var commentDiv = btnCancel.closest(".ec-comment");
-            var commentHolder = commentDiv.find(".ec-comment-holder");
-            commentHolder.find("[data-widget-name=CommentViewerWidget]").show();
-            commentHolder.find("[data-widget-name=CommentEditorWidget]").remove();
-        }
+        const btnCancel = $(this);
+
+        const cancelEdit = function () {
+            const commentDiv = btnCancel.closest(".ec-comment");
+            getViewerWidget(commentDiv).show();
+            getEditorWidget(commentDiv).remove();
+        };
 
         if ($(this).closest('form').data('changed')) {
             abp.message.confirm(l("AreYouSureYouWantToCancelEditingWarningMessage"))
@@ -71,5 +74,34 @@
             cancelEdit();
         }
     });
+
+    $(document).on("click", ".ec-button-edit", function (e) {
+        e.preventDefault();
+        
+        const commentDiv = $(this).closest(".ec-comment");
+        const commentId = commentDiv.attr("data-comment-id");
+        const viewerWidget = getViewerWidget(commentDiv);
+        const editorWidget = getEditorWidget(commentDiv);
+
+        service.updateContent({
+            id: commentId,
+            content:  editorWidget.find(".ec-textarea-new-comment").val()
+        }).then(function () {
+            editorWidget.remove();
+            const widgetManager = new abp.WidgetManager({
+                wrapper: $(viewerWidget).parent(),
+                filterCallback: function () {
+                    return {
+                        id: commentId,
+                        fromServer: true
+                    }
+                }
+            });
+            widgetManager.init();
+            widgetManager.refresh();
+            abp.notify.info(l("SuccessfullyEditComment"));
+        })
+    });
+
 })
 

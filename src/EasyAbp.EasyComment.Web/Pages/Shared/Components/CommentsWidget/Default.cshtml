@@ -34,14 +34,14 @@
                             <abp-dropdown-menu>
                                 @if (comment.CreatorId == CurrentUser.GetId())
                                 {
-                                    <abp-dropdown-item class="ec-edit-comment">@L["Edit"]</abp-dropdown-item>
+                                    <abp-dropdown-item class="ec-action-edit">@L["Edit"]</abp-dropdown-item>
                                 }
-                                <abp-dropdown-item class="ec-reply-comment">@L["Reply"]</abp-dropdown-item>
-                                <abp-dropdown-item class="ec-reference-comment">@L["Reference"]</abp-dropdown-item>
+                                <abp-dropdown-item class="ec-action-reply">@L["Reply"]</abp-dropdown-item>
+                                <abp-dropdown-item class="ec-action-reference">@L["Reference"]</abp-dropdown-item>
                                 @if (comment.CreatorId == CurrentUser.GetId())
                                 {
                                     <abp-dropdown-divider/>
-                                    <abp-dropdown-item class="ec-remove-comment">@L["Remove"]</abp-dropdown-item>
+                                    <abp-dropdown-item class="ec-action-remove">@L["Remove"]</abp-dropdown-item>
                                 }
                             </abp-dropdown-menu>
                         </abp-dropdown>
