@@ -9,10 +9,13 @@
         if (!$(form).valid()) return;
 
         const commentsWidget = $(form).closest("[data-widget-name=CommentsWidget]");
+        const widgetManager = new abp.WidgetManager({wrapper: $(commentsWidget).parent()});
+        widgetManager.init();   
+        
         const itemType = $(commentsWidget).find("#ItemType").val();
         const itemKey = $(commentsWidget).find("#ItemKey").val();
         const editorWidget = $(form).closest("[data-widget-name=CommentEditorWidget]");
-        const content = abp.widgets.commentEditorWidget($(editorWidget)).getContent();
+        const content = abp.widgets.CommentEditorWidget($(editorWidget)).getContent();
 
         service.addComment({
             itemType: itemType,
@@ -21,8 +24,6 @@
             // TODO: replyTo: replyTo
         })
             .then(function () {
-                const widgetManager = new abp.WidgetManager({wrapper: $(commentsWidget).parent()});
-                widgetManager.init();
                 widgetManager.refresh();
                 abp.notify.info(l("SuccessfullyPublishComment"));
             });
@@ -53,26 +54,26 @@
 
     $(document).on("change", "form :input", function () {
         $(this).closest('form').data('changed', true);
-    })
+    });
+
+    const cancelEdit = function (commentDiv) {
+        getViewerWidget(commentDiv).show();
+        getEditorWidget(commentDiv).remove();
+    };
 
     $(document).on("click", ".ec-button-cancel", function () {
-        const btnCancel = $(this);
-
-        const cancelEdit = function () {
-            const commentDiv = btnCancel.closest(".ec-comment");
-            getViewerWidget(commentDiv).show();
-            getEditorWidget(commentDiv).remove();
-        };
-
-        if ($(this).closest('form').data('changed')) {
+        const commentDiv = $(this).closest(".ec-comment");
+        const form = $(this).closest("form");
+        
+        if ($(form).data('changed')) {
             abp.message.confirm(l("AreYouSureYouWantToCancelEditingWarningMessage"))
                 .done(function (result) {
                     if (result) {
-                        cancelEdit();
+                        cancelEdit(commentDiv);
                     }
                 })
         } else {
-            cancelEdit();
+            cancelEdit(commentDiv);
         }
     });
 
@@ -80,13 +81,22 @@
         e.preventDefault();
 
         const commentDiv = $(this).closest(".ec-comment");
+        const form = $(this).closest("form"); 
+        
+        if (!$(form).valid()) return;
+        
+        if (!$(form).data('changed')) {
+            cancelEdit(commentDiv);
+            return;
+        }
+        
         const commentId = commentDiv.attr("data-comment-id");
         const viewerWidget = getViewerWidget(commentDiv);
         const editorWidget = getEditorWidget(commentDiv);
 
         service.updateContent({
             id: commentId,
-            content: abp.widgets.commentEditorWidget($(editorWidget)).getContent()
+            content: abp.widgets.CommentEditorWidget($(editorWidget)).getContent()
         }).then(function () {
             editorWidget.remove();
             const widgetManager = new abp.WidgetManager({
