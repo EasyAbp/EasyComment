@@ -155,4 +155,24 @@
         const referenceText = abp.widgets.CommentViewerWidget($(viewerWidget)).getContent();
         showReplyEditor($(this), "> " +  referenceText + "\n\n");
     });
+
+    $(document).on("click", ".ec-action-remove", function () {
+        const commentDiv = $(this).closest(".ec-comment"); 
+        
+        abp.message.confirm(l("CommentDeletionConfirmationMessage"))
+            .done(function (result) {
+                if (result) {
+                    const commentId = commentDiv.attr("data-comment-id");
+                    
+                    service.removeComment(commentId)
+                        .then(function () {
+                            const commentsWidget = commentDiv.closest("[data-widget-name=CommentsWidget]");
+                            const widgetManager = new abp.WidgetManager({wrapper: $(commentsWidget).parent()});
+                            widgetManager.init();
+                            widgetManager.refresh();
+                            abp.notify.info(l("SuccessfullyRemoveComment"));
+                        })
+                }
+            })
+    });
 })

@@ -16,8 +16,7 @@
     "CommentReplyTo": "回复给",
     "CreateComment": "创建评论",
     "EditComment": "编辑评论",
-    "CommentDeletionConfirmationMessage": "确定删除评论 {0}?",
-    "SuccessfullyDeleted": "删除成功",
+    "CommentDeletionConfirmationMessage": "确定删除该条评论?",
     "EasyComment:001" : "用户只能更新自己的评论",
     "EasyComment:002" : "用户只能删除自己的评论",
     "TotalComments" : "共 {0} 条评论",
@@ -27,9 +26,10 @@
     "SuccessfullyPublishComment": "发表评论成功",
     "SuccessfullyEditComment": "编辑评论成功",
     "SuccessfullyReplyComment": "回复评论成功",
+    "SuccessfullyRemoveComment": "删除评论成功",
     "Remove": "删除",
     "Reference": "引用",
     "Reply": "回复",
-    "ReplyTo": "{0} 回复 {1}"
+    "ReplyTo": "回复"
   }
 }
