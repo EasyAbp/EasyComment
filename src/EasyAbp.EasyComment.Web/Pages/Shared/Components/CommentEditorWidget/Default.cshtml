@@ -8,7 +8,7 @@
     {
         <label class="ec-editor-label" asp-for="Content">@Model.Label</label>
     }
-    <abp-input class="ec-editor-textarea" asp-for="Content" rows="5" no-label></abp-input>
+    <abp-input class="ec-editor-textarea" asp-for="Content" rows="5" no-label auto-focus="true"></abp-input>
     @if (Model.EditModel)
     {
         <div class="ec-editor-button-group">

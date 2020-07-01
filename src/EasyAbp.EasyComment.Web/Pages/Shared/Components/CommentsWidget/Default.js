@@ -3,7 +3,7 @@
     const service = easyAbp.easyComment.comments.comment;
 
     // TODO: retract helper methods
-    
+
     const addNewComment = function (form, successMessage, replyTo) {
         const commentsWidget = $(form).closest("[data-widget-name=CommentsWidget]");
         const widgetManager = new abp.WidgetManager({wrapper: $(commentsWidget).parent()});
@@ -55,6 +55,8 @@
             content: "",
         }, function (html) {
             commentDiv.find(".ec-comment-holder").append(html);
+            const editorWidget = getEditorWidget(commentDiv);
+            abp.widgets.CommentEditorWidget($(editorWidget)).setFocus(); 
         })
     });
 
@@ -139,6 +141,7 @@
             commentDiv.find(".ec-comment-holder").append(html);
             const editorWidget = getEditorWidget(commentDiv);
             $(editorWidget).data("replyTo", creatorId);
+            abp.widgets.CommentEditorWidget($(editorWidget)).setFocus();
         });
     };
 
@@ -147,15 +150,9 @@
     });
 
     $(document).on("click", ".ec-action-reference", function () {
-        let referenceText;
-        const selection = window.getSelection().toString();
-        if (selection) {
-            referenceText = selection;
-        } else {
-            const commentDiv = $(this).closest(".ec-comment");
-            const viewerWidget = getViewerWidget(commentDiv);
-            referenceText = abp.widgets.CommentViewerWidget($(viewerWidget)).getContent();
-        }
-        showReplyEditor($(this), referenceText);
+        const commentDiv = $(this).closest(".ec-comment");
+        const viewerWidget = getViewerWidget(commentDiv);
+        const referenceText = abp.widgets.CommentViewerWidget($(viewerWidget)).getContent();
+        showReplyEditor($(this), "> " +  referenceText + "\n\n");
     });
 })
