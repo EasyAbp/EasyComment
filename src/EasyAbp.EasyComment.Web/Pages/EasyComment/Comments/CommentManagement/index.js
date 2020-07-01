@@ -47,7 +47,7 @@ $(function () {
             { data: "itemType" },
             { data: "itemKey" },
             { data: "content" },
-            { data: "replyTo" },
+            { data: "replyToName" },
         ]
     }));
 
