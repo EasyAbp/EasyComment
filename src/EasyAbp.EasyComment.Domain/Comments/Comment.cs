@@ -1,6 +1,7 @@
 using System;
 using JetBrains.Annotations;
 using Volo.Abp;
+using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
@@ -9,9 +10,14 @@ namespace EasyAbp.EasyComment.Comments
     public class Comment : FullAuditedEntity<Guid>, IMultiTenant
     {
         public virtual Guid? TenantId { get; protected set; }
+        
         public virtual string ItemType { get; protected set; }
+        
         public virtual string ItemKey { get; protected set; }
+        
+        [Audited]
         public virtual string Content { get; protected set; }
+        
         public virtual Guid? ReplyTo { get; protected set; }
 
         protected Comment()
