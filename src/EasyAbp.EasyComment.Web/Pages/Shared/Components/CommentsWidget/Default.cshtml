@@ -56,11 +56,13 @@
     }
     @if (CurrentUser.IsAuthenticated)
     {
-        @await Component.InvokeAsync("CommentEditorWidget", new
-        {
-            ShowLabel = true,
-            Content = String.Empty,
-        })
+        <div class="ec-comment-holder">
+            @await Component.InvokeAsync("CommentEditorWidget", new
+            {
+                ShowLabel = true,
+                Content = String.Empty,
+            })
+        </div>
     }
     else
     {

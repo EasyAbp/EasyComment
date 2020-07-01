@@ -8,7 +8,8 @@ using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
 namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
 {
     [Widget(
-        RefreshUrl = "/widgets/easyComment/showCommentEditor"
+        RefreshUrl = "/widgets/easyComment/showCommentEditor",
+        ScriptFiles = new[] {"/Pages/Shared/Components/CommentEditorWidget/Default.js"}
     )]
     public class CommentEditorWidgetViewComponent : AbpViewComponent
     {
@@ -31,6 +32,7 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
                 var comment = await _service.GetAsync(id.Value);
                 viewModel.Content = comment.Content;
             }
+
             return View(viewModel);
         }
     }

@@ -8,10 +8,11 @@
         const form = $(this).closest("form");
         if (!$(form).valid()) return;
 
-        const commentsWidget = form.closest("[data-widget-name=CommentsWidget]");
+        const commentsWidget = $(form).closest("[data-widget-name=CommentsWidget]");
         const itemType = $(commentsWidget).find("#ItemType").val();
         const itemKey = $(commentsWidget).find("#ItemKey").val();
-        const content = $(commentsWidget).find(".ec-textarea-new-comment").val();   // TODO: a generic way of getting content from editor
+        const editorWidget = $(form).closest("[data-widget-name=CommentEditorWidget]");
+        const content = abp.widgets.commentEditorWidget($(editorWidget)).getContent();
 
         service.addComment({
             itemType: itemType,
@@ -30,7 +31,7 @@
     const getViewerWidget = function (commentDiv) {
         return commentDiv.find(".ec-comment-holder [data-widget-name=CommentViewerWidget]")
     };
-    
+
     const getEditorWidget = function (commentDiv) {
         return commentDiv.find(".ec-comment-holder [data-widget-name=CommentEditorWidget]")
     };
@@ -77,7 +78,7 @@
 
     $(document).on("click", ".ec-button-edit", function (e) {
         e.preventDefault();
-        
+
         const commentDiv = $(this).closest(".ec-comment");
         const commentId = commentDiv.attr("data-comment-id");
         const viewerWidget = getViewerWidget(commentDiv);
@@ -85,7 +86,7 @@
 
         service.updateContent({
             id: commentId,
-            content:  editorWidget.find(".ec-textarea-new-comment").val()
+            content: abp.widgets.commentEditorWidget($(editorWidget)).getContent()
         }).then(function () {
             editorWidget.remove();
             const widgetManager = new abp.WidgetManager({
@@ -102,6 +103,4 @@
             abp.notify.info(l("SuccessfullyEditComment"));
         })
     });
-
 })
-
