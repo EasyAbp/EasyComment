@@ -6,7 +6,7 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
 {
     public class CommentEditorViewModel
     {
-        public bool ShowLabel { get; set; }
+        public string Label { get; set; }
         
         [Required(ErrorMessage = "NeedCommentContent")]
         [TextArea]

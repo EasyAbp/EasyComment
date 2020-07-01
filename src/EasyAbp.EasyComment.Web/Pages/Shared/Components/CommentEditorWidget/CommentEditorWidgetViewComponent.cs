@@ -20,11 +20,11 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
             _service = service;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(Guid? id, bool showLabel, bool editModel)
+        public async Task<IViewComponentResult> InvokeAsync(Guid? id, string label, bool editModel)
         {
             var viewModel = new CommentEditorViewModel
             {
-                ShowLabel = showLabel,
+                Label = label,
                 EditModel = editModel,
             };
             if (id.HasValue)

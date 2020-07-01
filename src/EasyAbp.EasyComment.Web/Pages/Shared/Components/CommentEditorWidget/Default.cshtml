@@ -4,7 +4,7 @@
 @inject IHtmlLocalizer<EasyCommentResource> L
 
 <form>
-    @if (Model.ShowLabel)
+    @if (!Model.Label.IsNullOrEmpty())
     {
         <label class="ec-leave-comment" asp-for="Content">@L["LeaveComment"]</label>
     }

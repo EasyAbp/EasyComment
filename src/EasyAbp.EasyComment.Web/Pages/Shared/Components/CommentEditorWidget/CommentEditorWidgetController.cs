@@ -8,9 +8,9 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
     {
         [HttpGet]
         [Route("showCommentEditor")]
-        public IActionResult ShowCommentEditor(Guid? id, bool showLabel, bool editModel)
+        public IActionResult ShowCommentEditor(Guid? id, string label, bool editModel)
         {
-            return ViewComponent("CommentEditorWidget", new {id, showLabel, editModel});
+            return ViewComponent("CommentEditorWidget", new {id, label, editModel});
         } 
     }
 }
