@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
 {
@@ -8,9 +7,9 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
     {
         [HttpGet]
         [Route("showCommentEditor")]
-        public IActionResult ShowCommentEditor(Guid? id, string label, bool editModel)
+        public IActionResult ShowCommentEditor(CommentEditorWidgetParameter parameter)
         {
-            return ViewComponent("CommentEditorWidget", new {id, label, editModel});
+            return ViewComponent("CommentEditorWidget", parameter);
         } 
     }
 }

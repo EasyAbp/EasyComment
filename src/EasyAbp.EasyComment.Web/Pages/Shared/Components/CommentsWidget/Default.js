@@ -2,7 +2,9 @@
     const l = abp.localization.getResource("EasyComment");
     const service = easyAbp.easyComment.comments.comment;
 
-    const addNewComment = function(form, successMessage, replyTo) {
+    // TODO: retract helper methods
+    
+    const addNewComment = function (form, successMessage, replyTo) {
         const commentsWidget = $(form).closest("[data-widget-name=CommentsWidget]");
         const widgetManager = new abp.WidgetManager({wrapper: $(commentsWidget).parent()});
         widgetManager.init();
@@ -23,7 +25,7 @@
                 abp.notify.info(successMessage);
             });
     };
-    
+
     $(".ec-editor-button-publish").click(function (e) {
         e.preventDefault();
         const form = $(this).closest("form");
@@ -50,6 +52,7 @@
         $.get("/widgets/easyComment/showCommentEditor", {
             id: commentId,
             editModel: true,
+            content: "",
         }, function (html) {
             commentDiv.find(".ec-comment-holder").append(html);
         })
@@ -106,6 +109,7 @@
                 content: abp.widgets.CommentEditorWidget($(editorWidget)).getContent()
             }).then(function () {
                 editorWidget.remove();
+                commentDiv.find(".dropdown").show();
                 const widgetManager = new abp.WidgetManager({
                     wrapper: $(viewerWidget).parent(),
                     filterCallback: function () {
@@ -122,18 +126,36 @@
         }
     });
 
-    $(document).on("click", ".ec-action-reply", function () {
-        const commentDiv = $(this).closest(".ec-comment");
+    const showReplyEditor = function ($element, reference) {
+        const commentDiv = $element.closest(".ec-comment");
         const creatorId = commentDiv.attr("data-creator-id");
 
-        $(this).closest(".dropdown").hide();
+        $(commentDiv).find(".dropdown").hide();
         $.get("/widgets/easyComment/showCommentEditor", {
             label: l("Reply"),
             editModel: true,
+            content: reference
         }, function (html) {
             commentDiv.find(".ec-comment-holder").append(html);
             const editorWidget = getEditorWidget(commentDiv);
             $(editorWidget).data("replyTo", creatorId);
         });
+    };
+
+    $(document).on("click", ".ec-action-reply", function () {
+        showReplyEditor($(this));
+    });
+
+    $(document).on("click", ".ec-action-reference", function () {
+        let referenceText;
+        const selection = window.getSelection().toString();
+        if (selection) {
+            referenceText = selection;
+        } else {
+            const commentDiv = $(this).closest(".ec-comment");
+            const viewerWidget = getViewerWidget(commentDiv);
+            referenceText = abp.widgets.CommentViewerWidget($(viewerWidget)).getContent();
+        }
+        showReplyEditor($(this), referenceText);
     });
 })

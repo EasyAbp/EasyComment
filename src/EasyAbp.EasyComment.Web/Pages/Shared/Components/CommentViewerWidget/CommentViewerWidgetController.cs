@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
 {
@@ -8,9 +7,9 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
     {
         [HttpGet]
         [Route("showCommentViewer")]
-        public IActionResult ShowCommentViewer(Guid id, string content, bool fromServer)
+        public IActionResult ShowCommentViewer(CommentViewerWidgetParameter viewModel)
         {
-            return ViewComponent("CommentViewerWidget", new {id, content, fromServer});
+            return ViewComponent("CommentViewerWidget", viewModel);
         }
     }
 }

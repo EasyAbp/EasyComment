@@ -1,6 +1,8 @@
 ﻿@using EasyAbp.EasyComment.Comments.Dtos
 @using EasyAbp.EasyComment.Localization
 @using EasyAbp.EasyComment.Permissions
+@using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
+@using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Volo.Abp.Users
@@ -57,7 +59,11 @@
                 </abp-column>
             </abp-row>
             <div class="ec-comment-holder">
-                @await Component.InvokeAsync("CommentViewerWidget", new {Id = comment.Id, Content = comment.Content, FromServer = false})
+                @await Component.InvokeAsync("CommentViewerWidget", new CommentViewerWidgetParameter
+                {
+                    Id = comment.Id,
+                    Content = comment.Content,
+                })
             </div>
             <hr/>
         </abp-container>
@@ -65,7 +71,10 @@
     @if (CurrentUser.IsAuthenticated)
     {
         <div class="ec-comment-holder">
-            @await Component.InvokeAsync("CommentEditorWidget", new {Label = L["LeaveComment"].Value, Content = String.Empty,})
+            @await Component.InvokeAsync("CommentEditorWidget", new CommentEditorWidgetParameter
+            {
+                Label = L["LeaveComment"].Value,
+            })
         </div>
     }
     else

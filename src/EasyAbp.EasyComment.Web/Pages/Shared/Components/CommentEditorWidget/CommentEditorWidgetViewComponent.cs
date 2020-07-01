@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using EasyAbp.EasyComment.Comments;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
@@ -20,20 +19,21 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
             _service = service;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(Guid? id, string label, bool editModel)
+        public async Task<IViewComponentResult> InvokeAsync(CommentEditorWidgetParameter parameter)
         {
-            var viewModel = new CommentEditorViewModel
+            if (parameter.Id.HasValue)
             {
-                Label = label,
-                EditModel = editModel,
-            };
-            if (id.HasValue)
-            {
-                var comment = await _service.GetAsync(id.Value);
-                viewModel.Content = comment.Content;
+                var comment = await _service.GetAsync(parameter.Id.Value);
+                parameter.Content = comment.Content;
             }
 
-            return View(viewModel);
+            return View(new CommentEditorWidgetViewModel
+            {
+                Id = parameter.Id,
+                Label = parameter.Label,
+                Content = parameter.Content,
+                EditModel = parameter.EditModel,
+            });
         }
     }
 }

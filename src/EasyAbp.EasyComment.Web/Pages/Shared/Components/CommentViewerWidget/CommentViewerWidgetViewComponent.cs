@@ -20,18 +20,18 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
             _service = service;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(Guid id, string content, bool fromServer)
+        public async Task<IViewComponentResult> InvokeAsync(CommentViewerWidgetParameter parameter)
         {
-            if (fromServer)
+            if (parameter.FromServer)
             {
-                var comment = await _service.GetAsync(id);
-                content = comment.Content;
+                var comment = await _service.GetAsync(parameter.Id);
+                parameter.Content = comment.Content;
             }
 
-            return View(new CommentViewerViewModel
+            return View(new CommentViewerWidgetViewModel
             {
-                Id = id,
-                Content = content,
+                Id = parameter.Id,
+                Content = parameter.Content,
             });
         }
     }

@@ -4,8 +4,10 @@ using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 
 namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
 {
-    public class CommentEditorViewModel
+    public class CommentEditorWidgetViewModel
     {
+        public Guid? Id { get; set; }
+        
         public string Label { get; set; }
         
         [Required(ErrorMessage = "NeedCommentContent")]
