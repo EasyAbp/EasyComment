@@ -23,7 +23,14 @@
                 <abp-column size="_6">
                     <abp-row>
                         <a class="ec-comment-link" href="#@comment.Id">#@(i++)</a>
-                        <p class="ec-creator">@comment.CreatorName</p>
+                        @if (comment.ReplyTo.HasValue)
+                        {
+                            <p class="ec-user-name">@L["ReplyTo", comment.CreatorName, comment.ReplyToName]</p>
+                        }
+                        else
+                        {
+                            <p class="ec-user-name">@comment.CreatorName</p>
+                        }
                         <time class="ec-comment-time" datetime="@comment.CreationTime">@comment.CreationTime</time>
                     </abp-row>
                 </abp-column>
@@ -60,11 +67,7 @@
     @if (CurrentUser.IsAuthenticated)
     {
         <div class="ec-comment-holder">
-            @await Component.InvokeAsync("CommentEditorWidget", new
-            {
-                Label = L["LeaveComment"].Value,
-                Content = String.Empty,
-            })
+            @await Component.InvokeAsync("CommentEditorWidget", new {Label = L["LeaveComment"].Value, Content = String.Empty,})
         </div>
     }
     else

@@ -28,6 +28,7 @@
     "SuccessfullyEditComment": "编辑评论成功",
     "Remove": "删除",
     "Reference": "引用",
-    "Reply": "回复"
+    "Reply": "回复",
+    "ReplyTo": "{0} 回复 {1}"
   }
 }

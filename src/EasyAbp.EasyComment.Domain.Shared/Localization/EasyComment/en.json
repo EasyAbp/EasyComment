@@ -27,6 +27,7 @@
     "SuccessfullyEditComment": "Comment edited successfully",
     "Remove": "Delete",
     "Reference": "Reference",
-    "Reply": "Reply"
+    "Reply": "Reply",
+    "ReplyTo": "{0} replies to {1}"
   }
 }

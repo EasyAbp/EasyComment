@@ -51,6 +51,11 @@ namespace EasyAbp.EasyComment.Comments
             var dto = base.MapToGetListOutputDto(entity);
             var creator = AsyncHelper.RunSync(() => _userLookupServiceProvider.FindByIdAsync(entity.CreatorId.GetValueOrDefault()));
             dto.CreatorName = creator.Name;
+            if (entity.ReplyTo.HasValue)
+            {
+                var replyTo = AsyncHelper.RunSync(() => _userLookupServiceProvider.FindByIdAsync(entity.ReplyTo.GetValueOrDefault()));
+                dto.ReplyToName = replyTo.Name;
+            }
 
             return dto;
         }
@@ -79,7 +84,7 @@ namespace EasyAbp.EasyComment.Comments
             comment.SetContent(input.Content);
             return MapToGetOutputDto(comment);
         }
-        
+
         [Authorize]
         public virtual async Task RemoveCommentAsync(Guid id)
         {

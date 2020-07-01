@@ -13,6 +13,7 @@ namespace EasyAbp.EasyComment
              * into multiple profile classes for a better organization. */
             CreateMap<Comment, CommentDto>()
                 .ForMember(dest => dest.CreatorName, opt => opt.Ignore())
+                .ForMember(dest => dest.ReplyToName, opt => opt.Ignore())
                 ;
             CreateMap<CreateUpdateCommentDto, Comment>(MemberList.Source);
         }
