@@ -42,6 +42,7 @@
         const commentId = commentDiv.attr("data-comment-id");
         const viewerWidget = getViewerWidget(commentDiv);
 
+        $(this).closest(".dropdown").hide();
         viewerWidget.hide();
         $.get("/widgets/easyComment/showCommentEditor", {
             id: commentId,
@@ -59,6 +60,7 @@
     const cancelEdit = function (commentDiv) {
         getViewerWidget(commentDiv).show();
         getEditorWidget(commentDiv).remove();
+        commentDiv.find(".dropdown").show();
     };
 
     $(document).on("click", ".ec-button-cancel", function () {
