@@ -41,7 +41,7 @@ namespace EasyAbp.EasyComment.Web
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<EasyCommentWebModule>("EasyAbp.EasyComment.Web");
+                options.FileSets.AddEmbedded<EasyCommentWebModule>();
             });
 
             context.Services.AddAutoMapperObjectMapper<EasyCommentWebModule>();

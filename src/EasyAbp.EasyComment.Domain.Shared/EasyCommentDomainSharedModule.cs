@@ -17,7 +17,7 @@ namespace EasyAbp.EasyComment
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<EasyCommentDomainSharedModule>("EasyAbp.EasyComment");
+                options.FileSets.AddEmbedded<EasyCommentDomainSharedModule>();
             });
 
             Configure<AbpLocalizationOptions>(options =>

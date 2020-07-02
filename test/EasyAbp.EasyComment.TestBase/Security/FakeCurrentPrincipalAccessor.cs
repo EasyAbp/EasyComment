@@ -8,7 +8,7 @@ namespace EasyAbp.EasyComment.Security
     [Dependency(ReplaceServices = true)]
     public class FakeCurrentPrincipalAccessor : ThreadCurrentPrincipalAccessor
     {
-        public override ClaimsPrincipal GetClaimsPrincipal()
+        protected override ClaimsPrincipal GetClaimsPrincipal()
         {
             return GetPrincipal();
         }

@@ -1,7 +1,9 @@
 ﻿@page
-@inherits EasyAbp.EasyComment.Web.Pages.EasyCommentPage
+@using Microsoft.Extensions.Localization
+@using EasyAbp.EasyComment.Localization
 @model EasyAbp.EasyComment.Web.Pages.EasyComment.IndexModel
+@inject IStringLocalizer<EasyCommentResource> L
 @{
 }
 <h1>EasyComment</h1>
-<p>A sample page for the EasyComment module.</p>
+<p>@L["SamplePageMessage"]</p>

@@ -1,7 +1,11 @@
 ﻿@page
 @using EasyAbp.EasyComment.Pages
-@inherits EasyCommentPage
 @model IndexModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using EasyAbp.EasyComment.Localization
+@using Volo.Abp.Users
+@inject IHtmlLocalizer<EasyCommentResource> L
+@inject ICurrentUser CurrentUser
 <abp-card>
     <abp-card-header>Welcome</abp-card-header>
     <abp-card-body>
