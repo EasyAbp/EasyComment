@@ -2,8 +2,6 @@
     const l = abp.localization.getResource("EasyComment");
     const service = easyAbp.easyComment.comments.comment;
 
-    $(".ec-comment-time").timeago();
-    
     // TODO: retract helper methods
 
     const addNewComment = function (form, successMessage, replyTo) {
