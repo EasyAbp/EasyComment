@@ -35,7 +35,7 @@ namespace EasyAbp.EasyComment.Comments
 
         public virtual Comment SetContent([NotNull] string content)
         {
-            Content = Check.NotNullOrWhiteSpace(content, nameof(content));;
+            Content = Check.NotNullOrWhiteSpace(content, nameof(content));
             return this;
         }
     }

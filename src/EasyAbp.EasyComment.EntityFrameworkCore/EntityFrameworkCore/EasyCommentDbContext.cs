@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using EasyAbp.EasyComment.Comments;
+using EasyAbp.EasyComment.CommentUsers;
 
 namespace EasyAbp.EasyComment.EntityFrameworkCore
 {
@@ -12,6 +13,7 @@ namespace EasyAbp.EasyComment.EntityFrameworkCore
          * public DbSet<Question> Questions { get; set; }
          */
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<CommentUser> CommentUsers { get; set; }
 
         public EasyCommentDbContext(DbContextOptions<EasyCommentDbContext> options) 
             : base(options)

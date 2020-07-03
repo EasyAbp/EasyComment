@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.EasyComment.Permissions;
 using EasyAbp.EasyComment.Comments.Dtos;
+using EasyAbp.EasyComment.CommentUsers;
 using Microsoft.AspNetCore.Authorization;
 using Volo.Abp;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Threading;
 using Volo.Abp.Users;
@@ -18,12 +21,12 @@ namespace EasyAbp.EasyComment.Comments
         protected override string UpdatePolicyName { get; set; } = EasyCommentPermissions.Comment.Update;
         protected override string DeletePolicyName { get; set; } = EasyCommentPermissions.Comment.Delete;
         private readonly ICommentRepository _repository;
-        private readonly IExternalUserLookupServiceProvider _userLookupServiceProvider;
+        protected ICommentUserLookupService UserLookupService;
 
-        public CommentAppService(ICommentRepository repository, IExternalUserLookupServiceProvider userLookupServiceProvider) : base(repository)
+        public CommentAppService(ICommentRepository repository, ICommentUserLookupService userLookupService) : base(repository)
         {
             _repository = repository;
-            _userLookupServiceProvider = userLookupServiceProvider;
+            UserLookupService = userLookupService;
         }
 
         protected override IQueryable<Comment> CreateFilteredQuery(GetListInput input)
@@ -38,7 +41,7 @@ namespace EasyAbp.EasyComment.Comments
         {
             if (input.Sorting.IsNullOrEmpty())
             {
-                return query.OrderBy(c => c.CreationTime);
+                return query.OrderByDescending(c => c.CreationTime);
             }
             else
             {
@@ -46,18 +49,32 @@ namespace EasyAbp.EasyComment.Comments
             }
         }
 
-        protected override CommentDto MapToGetListOutputDto(Comment entity)
+        public override async Task<PagedResultDto<CommentDto>> GetListAsync(GetListInput input)
         {
-            var dto = base.MapToGetListOutputDto(entity);
-            var creator = AsyncHelper.RunSync(() => _userLookupServiceProvider.FindByIdAsync(entity.CreatorId.GetValueOrDefault()));
-            dto.CreatorName = creator.Name;
-            if (entity.ReplyTo.HasValue)
+            var comments = await base.GetListAsync(input);
+            var userDictionary = new Dictionary<Guid, CommentUserDto>();
+
+            foreach (var comment in comments.Items)
             {
-                var replyTo = AsyncHelper.RunSync(() => _userLookupServiceProvider.FindByIdAsync(entity.ReplyTo.GetValueOrDefault()));
-                dto.ReplyToName = replyTo.Name;
+                comment.CreateUser = await GetUserAsync(comment.CreatorId.GetValueOrDefault(), userDictionary);
+                if (comment.ReplyTo.HasValue)
+                {
+                    comment.ReplyToUser = await GetUserAsync(comment.ReplyTo.GetValueOrDefault(), userDictionary);
+                }
             }
 
-            return dto;
+            return comments;
+        }
+
+        protected virtual async Task<CommentUserDto> GetUserAsync(Guid userId, Dictionary<Guid, CommentUserDto> userDictionary)
+        {
+            if (!userDictionary.ContainsKey(userId))
+            {
+                var user = await UserLookupService.FindByIdAsync(userId);
+                userDictionary.Add(userId, ObjectMapper.Map<CommentUser, CommentUserDto>(user));
+            }
+
+            return userDictionary[userId];
         }
 
         [Authorize]

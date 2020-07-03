@@ -1,8 +1,10 @@
 ﻿using EasyAbp.EasyComment.Comments;
 using System;
+using EasyAbp.EasyComment.CommentUsers;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
+using Volo.Abp.Users.EntityFrameworkCore;
 
 namespace EasyAbp.EasyComment.EntityFrameworkCore
 {
@@ -42,6 +44,14 @@ namespace EasyAbp.EasyComment.EntityFrameworkCore
             */
 
 
+            builder.Entity<CommentUser>(b =>
+            {
+                b.ToTable(options.TablePrefix + "Users", options.Schema);
+
+                b.ConfigureByConvention();
+                b.ConfigureAbpUser();
+            });
+            
             builder.Entity<Comment>(b =>
             {
                 b.ToTable(options.TablePrefix + "Comments", options.Schema);

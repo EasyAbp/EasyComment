@@ -6,11 +6,21 @@
 
     const addNewComment = function (form, successMessage, replyTo) {
         const commentsWidget = $(form).closest("[data-widget-name=CommentsWidget]");
-        const widgetManager = new abp.WidgetManager({wrapper: $(commentsWidget).parent()});
-        widgetManager.init();
 
         const itemType = $(commentsWidget).find("#ItemType").val();
         const itemKey = $(commentsWidget).find("#ItemKey").val();
+        const widgetManager = new abp.WidgetManager(
+            {
+                wrapper: $(commentsWidget).parent(),
+                filterCallback: function () {
+                    return {
+                        itemType: itemType,
+                        itemKey: itemKey
+                    }
+                }
+            });
+        widgetManager.init();
+        
         const editorWidget = $(form).closest("[data-widget-name=CommentEditorWidget]");
         const content = abp.widgets.CommentEditorWidget($(editorWidget)).getContent();
 

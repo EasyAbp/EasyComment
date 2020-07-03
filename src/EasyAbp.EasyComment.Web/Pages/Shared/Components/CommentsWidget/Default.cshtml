@@ -25,11 +25,11 @@
                 <abp-column size="_10">
                     <abp-row>
                         <a class="ec-comment-link" href="#@comment.Id">#@(i++)</a>
-                        <p class="ec-user-name">@comment.CreatorName</p>
+                        <p class="ec-user-name">@comment.CreateUser.Name</p>
                         @if (comment.ReplyTo.HasValue)
                         {
                             <span class="ec-reply-to">@L["ReplyTo"]</span>
-                            <p class="ec-user-name">@comment.ReplyToName</p>
+                            <p class="ec-user-name">@comment.ReplyToUser.Name</p>
                         }
                         <time class="ec-comment-time" datetime="@comment.CreationTime">@comment.CreationTime</time>
                     </abp-row>

@@ -17,7 +17,7 @@ namespace EasyAbp.EasyComment.Web.TagHelpers
 
         protected override async Task<string> GetLabelAsHtmlAsync(TagHelperContext context, TagHelperOutput output, TagHelperOutput inputTag, bool isCheckbox)
         {
-            if (context.AllAttributes.ContainsName("no-label")) return "";
+            if (inputTag.Attributes.ContainsName("no-label")) return "";
 
             return await base.GetLabelAsHtmlAsync(context, output, inputTag, isCheckbox);
         }

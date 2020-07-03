@@ -1,4 +1,5 @@
 using System;
+using EasyAbp.EasyComment.CommentUsers;
 using Volo.Abp.Application.Dtos;
 
 namespace EasyAbp.EasyComment.Comments.Dtos
@@ -14,7 +15,7 @@ namespace EasyAbp.EasyComment.Comments.Dtos
 
         public Guid? ReplyTo { get; set; }
         
-        public string CreatorName { get; set; }
-        public string ReplyToName { get; set; }
+        public CommentUserDto CreateUser { get; set; }
+        public CommentUserDto ReplyToUser { get; set; }
     }
 }
