@@ -3,11 +3,26 @@
     <LangVersion>latest</LangVersion>
     <Version>0.1.0</Version>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
-	<AbpProjectType>module</AbpProjectType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>EasyAbp Team</Authors>
+    <Description>An ABP application module provides a flexible comment system.</Description>
+    <PackageProjectUrl>https://github.com/EasyAbp/EasyComment</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/EasyAbp/EasyComment</RepositoryUrl>
+    <PackageTags>abp module easyabp comment easy easycomment</PackageTags>
+    <Company>EasyAbp</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ConfigureAwait.Fody" Version="3.3.1" PrivateAssets="All" />
+    <PackageReference Include="Fody" Version="6.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
