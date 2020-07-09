@@ -2,11 +2,7 @@
     const l = abp.localization.getResource("EasyComment");
     const service = easyAbp.easyComment.comments.comment;
 
-    // TODO: retract helper methods
-
-    const addNewComment = function (form, successMessage, replyTo) {
-        const commentsWidget = $(form).closest("[data-widget-name=CommentsWidget]");
-
+    const refreshComments = function (commentsWidget, page, commentCountPage, sorting) {
         const itemType = $(commentsWidget).find("#ItemType").val();
         const itemKey = $(commentsWidget).find("#ItemKey").val();
         const widgetManager = new abp.WidgetManager(
@@ -15,11 +11,23 @@
                 filterCallback: function () {
                     return {
                         itemType: itemType,
-                        itemKey: itemKey
+                        itemKey: itemKey,
+                        page: page,
+                        commentCountPage: commentCountPage,
+                        sorting: sorting
                     }
                 }
             });
         widgetManager.init();
+        widgetManager.refresh();
+    }
+    
+    // TODO: extract helper methods
+
+    const addNewComment = function (form, successMessage, replyTo) {
+        const commentsWidget = $(form).closest("[data-widget-name=CommentsWidget]");
+        const itemType = $(commentsWidget).find("#ItemType").val();
+        const itemKey = $(commentsWidget).find("#ItemKey").val();
         
         const editorWidget = $(form).closest("[data-widget-name=CommentEditorWidget]");
         const content = abp.widgets.CommentEditorWidget($(editorWidget)).getContent();
@@ -31,7 +39,7 @@
             replyTo: replyTo
         })
             .then(function () {
-                widgetManager.refresh();
+                refreshComments(commentsWidget, 1, 10)
                 abp.notify.info(successMessage);
             });
     };
@@ -66,7 +74,7 @@
         }, function (html) {
             commentDiv.find(".ec-comment-holder").append(html);
             const editorWidget = getEditorWidget(commentDiv);
-            abp.widgets.CommentEditorWidget($(editorWidget)).setFocus(); 
+            abp.widgets.CommentEditorWidget($(editorWidget)).setFocus();
         })
     });
 
@@ -177,6 +185,7 @@
                     service.removeComment(commentId)
                         .then(function () {
                             const commentsWidget = commentDiv.closest("[data-widget-name=CommentsWidget]");
+                            refreshComments(commentsWidget, ) // TODO
                             const widgetManager = new abp.WidgetManager({wrapper: $(commentsWidget).parent()});
                             widgetManager.init();
                             widgetManager.refresh();
@@ -185,4 +194,12 @@
                 }
             })
     });
+    
+    $(document).on("click", ".page-link", function (e) {
+        e.preventDefault();
+
+        const reg = /currentPage=([0-9]+)/;
+        const page = reg.exec($(this).attr("href"))[1];
+        console.log(page);
+    })
 })

@@ -7,9 +7,9 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
     {
         [HttpGet]
         [Route("comments")]
-        public IActionResult Comments(string itemType, string itemKey)
+        public IActionResult Comments(CommentsWidgetParameter parameter)
         {
-            return ViewComponent("CommentsWidget", new {itemType, itemKey});
+            return ViewComponent("CommentsWidget", parameter);
         } 
     }
 }

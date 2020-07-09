@@ -1,6 +1,7 @@
 ﻿using EasyAbp.EasyComment.Comments.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Pagination;
 
 namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
 {
@@ -14,5 +15,6 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
         
         public PagedResultDto<CommentDto> Comments { get; set; }
 
+        public PagerModel PagerModel { get; set; }
     }
 }

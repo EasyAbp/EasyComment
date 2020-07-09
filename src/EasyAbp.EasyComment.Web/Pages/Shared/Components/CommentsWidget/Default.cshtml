@@ -59,22 +59,18 @@
                 </abp-column>
             </abp-row>
             <div class="ec-comment-holder">
-                @await Component.InvokeAsync("CommentViewerWidget", new CommentViewerWidgetParameter
-                {
-                    Id = comment.Id,
-                    Content = comment.Content,
-                })
+                @await Component.InvokeAsync("CommentViewerWidget", new CommentViewerWidgetParameter {Id = comment.Id, Content = comment.Content,})
             </div>
             <hr/>
         </abp-container>
     }
+    
+    <abp-paginator model="Model.PagerModel" show-info="false" class="ec-paginator"/>
+    
     @if (CurrentUser.IsAuthenticated)
     {
         <div class="ec-comment-holder">
-            @await Component.InvokeAsync("CommentEditorWidget", new CommentEditorWidgetParameter
-            {
-                Label = L["LeaveComment"].Value,
-            })
+            @await Component.InvokeAsync("CommentEditorWidget", new CommentEditorWidgetParameter {Label = L["LeaveComment"].Value,})
         </div>
     }
 </abp-container>

@@ -1,12 +1,15 @@
 ﻿@page
+@using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
 @model EasyAbp.EasyComment.Pages.Comments
 
 <div style="width: 600px;">
     <h3>Comments</h3>
-    @await Component.InvokeAsync("CommentsWidget", new
+    @await Component.InvokeAsync("CommentsWidget", new CommentsWidgetParameter
     {
         ItemType = "TestItemType",
-        ItemKey = "TestItemKey"
+        ItemKey = "TestItemKey",
+        Page = 1,
+        CommentsCountPerPage = 10,
     })
 </div>
 
