@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using EasyAbp.EasyComment.Comments;
 using EasyAbp.EasyComment.Comments.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Pagination;
 using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
@@ -29,24 +30,17 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
             {
                 ItemType = parameter.ItemType,
                 ItemKey = parameter.ItemKey,
-                SkipCount = (parameter.Page - 1) * parameter.CommentsCountPerPage,
-                MaxResultCount = parameter.CommentsCountPerPage,
+                SkipCount = parameter.SkipCount,
+                MaxResultCount = parameter.MaxResultCount,
             });
-            
-            var pagerModel = new PagerModel(comments.TotalCount, 
-                parameter.CommentsCountPerPage,
-                parameter.Page,
-                parameter.CommentsCountPerPage,
-                String.Empty,    // we will use js to handle navigation
-                parameter.Sorting
-                );
             
             return View(new CommentsWidgetViewModel
             {
                 ItemType = parameter.ItemType,
                 ItemKey = parameter.ItemKey,
                 Comments = comments,
-                PagerModel = pagerModel,
+                TotalCount = parameter.SkipCount + parameter.MaxResultCount,
+                LoadCount = parameter.MaxResultCount,
             });
         }
     }

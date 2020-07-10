@@ -11,9 +11,7 @@
 @inject ICurrentUser CurrentUser
 @inject IAuthorizationService Authorization
 
-<abp-container class="ec-comments">
-    <abp-input asp-for="ItemType"></abp-input>
-    <abp-input asp-for="ItemKey"></abp-input>
+<abp-container class="ec-comments" data-item-type="@Model.ItemType" data-item-key="@Model.ItemKey">
     <abp-row>
         <i class="fa fa-comments"> @L["TotalComments", Model.Comments.TotalCount]</i>
     </abp-row>
@@ -65,7 +63,9 @@
         </abp-container>
     }
     
-    <abp-paginator model="Model.PagerModel" show-info="false" class="ec-paginator"/>
+    <abp-row h-align="Center">
+        <abp-button class="ec-button-load-more-comments" button-type="Link" text="@L["LoadMoreComments"].Value" data-total-count="@Model.TotalCount" data-load-count="@Model.LoadCount"></abp-button>
+    </abp-row>
     
     @if (CurrentUser.IsAuthenticated)
     {

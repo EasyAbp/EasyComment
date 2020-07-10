@@ -14,7 +14,7 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
         public string ItemKey { get; set; }
         
         public PagedResultDto<CommentDto> Comments { get; set; }
-
-        public PagerModel PagerModel { get; set; }
+        public int TotalCount { get; set; }
+        public int LoadCount { get; set; }
     }
 }

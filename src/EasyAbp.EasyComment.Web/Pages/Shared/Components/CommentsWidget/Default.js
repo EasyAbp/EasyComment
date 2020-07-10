@@ -195,11 +195,10 @@
             })
     });
     
-    $(document).on("click", ".page-link", function (e) {
+    $(document).on("click", ".ec-button-load-more-comments", function (e) {
         e.preventDefault();
 
-        const reg = /currentPage=([0-9]+)/;
-        const page = reg.exec($(this).attr("href"))[1];
-        console.log(page);
+        const totalCount = $(this).attr("data-total-count");
+        const loadCount = $(this).attr("data-load-count");
     })
 })

@@ -4,8 +4,8 @@
     {
         public string ItemType { get; set; }
         public string ItemKey { get; set; }
-        public int Page { get; set; }
-        public int CommentsCountPerPage { get; set; }
         public string Sorting { get; set; }
+        public int SkipCount { get; set; }
+        public int MaxResultCount { get; set; }
     }
 }

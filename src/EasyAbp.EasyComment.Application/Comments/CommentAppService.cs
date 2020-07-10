@@ -41,7 +41,7 @@ namespace EasyAbp.EasyComment.Comments
         {
             if (input.Sorting.IsNullOrEmpty())
             {
-                return query.OrderBy(c => c.CreationTime);
+                return query.OrderByDescending(c => c.CreationTime);
             }
             else
             {
