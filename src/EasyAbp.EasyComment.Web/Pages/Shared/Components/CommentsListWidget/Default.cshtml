@@ -1,0 +1,17 @@
+﻿@using EasyAbp.EasyComment.Comments.Dtos
+@using EasyAbp.EasyComment.Localization
+@using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.Users
+@model EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsListWidget.CommentsListWidgetViewModel
+@inject IHtmlLocalizer<EasyCommentResource> L
+@inject ICurrentUser CurrentUser
+@inject IAuthorizationService Authorization
+
+<abp-container class="ec-comments-list">
+@foreach (CommentDto comment in Model.Comments)
+{
+    @await Component.InvokeAsync("CommentWidget", new CommentWidgetParameter(comment))
+}
+</abp-container>

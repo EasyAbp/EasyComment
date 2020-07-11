@@ -1,14 +1,14 @@
 ﻿@page
 @using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsWidget
+@using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsZoneWidget
 @model EasyAbp.EasyComment.Pages.Comments
 
 <div style="width: 600px;">
     <h3>Comments</h3>
-    @await Component.InvokeAsync("CommentsWidget", new CommentsWidgetParameter
-    {
-        ItemType = "TestItemType",
-        ItemKey = "TestItemKey",
-        SkipCount = 0,
-        MaxResultCount = 20,
-    })
+    @await Component.InvokeAsync("CommentsZoneWidget", new CommentsZoneWidgetParameter(
+        "TestItemType",
+        "TestItemKey",
+        String.Empty, 
+        20
+        ))
 </div>

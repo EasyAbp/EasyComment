@@ -71,5 +71,12 @@ namespace EasyAbp.EasyComment.Comments
         {
             return _service.RemoveCommentAsync(id);
         }
+
+        [HttpGet]
+        [Route("totalCount")]
+        public Task<long> GetTotalCount(GetListInput input)
+        {
+            return _service.GetTotalCount(input);
+        }
     }
 }

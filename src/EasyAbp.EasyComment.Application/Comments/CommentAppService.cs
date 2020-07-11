@@ -37,18 +37,6 @@ namespace EasyAbp.EasyComment.Comments
                 ;
         }
 
-        protected override IQueryable<Comment> ApplySorting(IQueryable<Comment> query, GetListInput input)
-        {
-            if (input.Sorting.IsNullOrEmpty())
-            {
-                return query.OrderByDescending(c => c.CreationTime);
-            }
-            else
-            {
-                return base.ApplySorting(query, input);
-            }
-        }
-
         public override async Task<PagedResultDto<CommentDto>> GetListAsync(GetListInput input)
         {
             var comments = await base.GetListAsync(input);
@@ -64,6 +52,12 @@ namespace EasyAbp.EasyComment.Comments
             }
 
             return comments;
+        }
+
+        public async Task<long> GetTotalCount(GetListInput input)
+        {
+            var query = CreateFilteredQuery(input);
+            return await AsyncExecuter.LongCountAsync(query);
         }
 
         protected virtual async Task<CommentUserDto> GetUserAsync(Guid userId, Dictionary<Guid, CommentUserDto> userDictionary)

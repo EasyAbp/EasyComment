@@ -17,5 +17,6 @@ namespace EasyAbp.EasyComment.Comments
         Task<CommentDto> AddCommentAsync(CreateUpdateCommentDto input);
         Task<CommentDto> UpdateContentAsync(UpdateContentInput input);
         Task RemoveCommentAsync(Guid id);
+        Task<long> GetTotalCount(GetListInput input);
     }
 }
