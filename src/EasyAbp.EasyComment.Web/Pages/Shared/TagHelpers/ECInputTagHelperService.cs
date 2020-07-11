@@ -6,7 +6,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 using Volo.Abp.DependencyInjection;
 
-namespace EasyAbp.EasyComment.Web.TagHelpers
+namespace EasyAbp.EasyComment.Web.Pages.Shared.TagHelpers
 {
     [ExposeServices(typeof(AbpInputTagHelperService))]
     public class ECInputTagHelperService : AbpInputTagHelperService

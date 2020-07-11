@@ -1,5 +1,4 @@
-﻿@using System.Net
-@using EasyAbp.EasyComment.Localization
+﻿@using EasyAbp.EasyComment.Localization
 @using EasyAbp.EasyComment.Permissions
 @using EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
 @using Microsoft.AspNetCore.Authorization
@@ -14,6 +13,7 @@
     <abp-row>
         <abp-column size="_10">
             <abp-row>
+                <img gravatar-email="@Model.Comment.CreateUser.Email" default-image="Identicon" gravatar-size="40"/>
                 <p class="ec-user-name">@Model.Comment.CreateUser.Name</p>
                 @if (Model.Comment.ReplyTo.HasValue)
                 {

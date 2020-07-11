@@ -49,4 +49,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Shared\Components\CommentsWidget\Default.cshtml" />
+  </ItemGroup>
+
 </Project>
