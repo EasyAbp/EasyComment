@@ -6,6 +6,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>EasyAbp Team</Authors>
     <Description>An ABP application module provides a flexible comment system.</Description>
+    <PackageIconUrl>https://avatars3.githubusercontent.com/u/58311641?s=128</PackageIconUrl>
     <PackageProjectUrl>https://github.com/EasyAbp/EasyComment</PackageProjectUrl>
     <RepositoryUrl>https://github.com/EasyAbp/EasyComment</RepositoryUrl>
     <PackageTags>abp module easyabp comment easy easycomment</PackageTags>
