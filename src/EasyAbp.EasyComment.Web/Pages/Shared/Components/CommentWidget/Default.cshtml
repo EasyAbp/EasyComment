@@ -11,7 +11,7 @@
 
 <abp-container class="ec-comment" data-comment-id="@Model.Comment.Id" data-creator-id="@Model.Comment.CreatorId">
     <img class="ec-user-avatar" comment-creator="Model.Comment.CreateUser"/>
-    <div>
+    <abp-container>
         <div class="ec-comment-info">
             <p class="ec-user-name">@Model.Comment.CreateUser.Name</p>
             @if (Model.Comment.ReplyTo.HasValue)
@@ -22,10 +22,10 @@
             <time class="ec-comment-time" datetime="@Model.Comment.CreationTime">@Model.Comment.CreationTime</time>
         </div>
         @await Component.InvokeAsync("CommentViewerWidget", new CommentViewerWidgetParameter {Id = Model.Comment.Id, Content = Model.Comment.Content,})
-    </div>
+    </abp-container>
     @if (CurrentUser.IsAuthenticated)
     {
-        <abp-dropdown>
+        <abp-dropdown class="ec-action">
             <abp-dropdown-button button-type="Light" text="..." size="Medium"/>
             <abp-dropdown-menu>
                 @if (Model.Comment.CreatorId == CurrentUser.GetId() ||

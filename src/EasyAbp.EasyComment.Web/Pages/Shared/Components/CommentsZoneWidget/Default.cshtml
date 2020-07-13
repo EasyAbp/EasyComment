@@ -9,24 +9,22 @@
 @inject ICurrentUser CurrentUser
 @inject IAuthorizationService Authorization
 
-<abp-container class="ec-comments-zone" data-item-type="@Model.ItemType" data-item-key="@Model.ItemKey">
+<abp-container class="ec-comments-zone" data-item-type="@Model.ItemType" data-item-key="@Model.ItemKey" data-sorting="@Model.Sorting" data-max-result-count="@Model.MaxResultCount">
     <abp-row>
         <i class="fa fa-comments"> @L["TotalComments", Model.TotalCount]</i>
     </abp-row>
 
-    @await Component.InvokeAsync("CommentsListWidget", new CommentsListWidgetParameter(
-        Model.ItemType,
-        Model.ItemKey,
-        Model.Sorting,
-        0,
-        0,
-        Model.MaxResultCount
-    ))
+    @await Component.InvokeAsync("CommentsListWidget", new CommentsListWidgetParameter {
+        ItemType = Model.ItemType,
+        ItemKey = Model.ItemKey,
+        Sorting = Model.Sorting,
+        LoadedCount = 0,
+        SkipCount = 0,
+        MaxResultCount = Model.MaxResultCount
+    })
 
     @if (CurrentUser.IsAuthenticated)
     {
-        <div class="ec-comment-holder">
-            @await Component.InvokeAsync("CommentEditorWidget", new CommentEditorWidgetParameter {Label = L["LeaveComment"].Value,})
-        </div>
+        @await Component.InvokeAsync("CommentEditorWidget", new CommentEditorWidgetParameter {Label = L["LeaveComment"].Value,})
     }
 </abp-container>

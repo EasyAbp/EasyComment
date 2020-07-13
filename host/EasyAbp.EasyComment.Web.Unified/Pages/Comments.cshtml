@@ -4,10 +4,10 @@
 
 <div style="width: 600px;">
     <h3>Comments</h3>
-    @await Component.InvokeAsync("CommentsZoneWidget", new CommentsZoneWidgetParameter(
-        "TestItemType",
-        "TestItemKey",
-        String.Empty, 
-        20
-        ))
+    @await Component.InvokeAsync("CommentsZoneWidget", new CommentsZoneWidgetParameter{
+        ItemType = "TestItemType",
+        ItemKey = "TestItemKey",
+        Sorting = String.Empty, 
+        MaxResultCount = 20
+        })
 </div>

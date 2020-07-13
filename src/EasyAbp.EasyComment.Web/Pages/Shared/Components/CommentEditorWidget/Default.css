@@ -1,0 +1,17 @@
+﻿.ec-editor-label {
+    margin-top: 20px;
+    font-size: medium;
+}
+
+.ec-editor-textarea {
+    width:100%;
+}
+
+.ec-editor-button-publish {
+    margin-bottom: 20px;
+    float: right;
+}
+
+.ec-editor-button-group {
+    float : right;
+}

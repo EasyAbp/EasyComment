@@ -6,6 +6,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
 namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget
 {
     [Widget(
+        ScriptFiles = new[] {"/Pages/Shared/Components/CommentWidget/Default.js"}, 
         StyleFiles = new []{"/Pages/Shared/Components/CommentWidget/Default.css"}
         )]
     public class CommentWidgetViewComponent : AbpViewComponent

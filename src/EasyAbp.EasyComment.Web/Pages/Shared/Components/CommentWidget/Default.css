@@ -1,5 +1,5 @@
 ﻿.ec-comment {
-    padding: 10px;
+    padding: 10px 0;
     display: flex;
     align-items: flex-start;
     border-bottom: 1px solid #f1f1f1;
@@ -28,3 +28,12 @@
     height: 40px;
 }
 
+/*Remove the arrow of dropdowns */
+.dropdown-toggle::after {
+    border: none;
+    content: none;
+}
+
+.ec-action {
+    margin-left: auto;
+}

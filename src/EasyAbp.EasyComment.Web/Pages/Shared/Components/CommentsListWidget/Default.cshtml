@@ -12,6 +12,8 @@
 <abp-container class="ec-comments-list">
 @foreach (CommentDto comment in Model.Comments)
 {
-    @await Component.InvokeAsync("CommentWidget", new CommentWidgetParameter(comment))
+    <div class="ec-comment-holder">
+        @await Component.InvokeAsync("CommentWidget", new CommentWidgetParameter(comment))
+    </div>
 }
 </abp-container>

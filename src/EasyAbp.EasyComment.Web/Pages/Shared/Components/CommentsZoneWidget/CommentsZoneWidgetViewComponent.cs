@@ -7,7 +7,15 @@ using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
 
 namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsZoneWidget
 {
-    [Widget]
+    [Widget(
+        RefreshUrl = "/widgets/easyComment/showCommentsZone", 
+        ScriptFiles = new[]
+        {
+            "/Pages/Shared/Components/CommentsZoneWidget/Default.js",
+            "/Pages/Shared/Components/CommentsZoneWidget/Helper.js",
+        }, 
+        StyleFiles = new []{"/Pages/Shared/Components/CommentsZoneWidget/Default.css"}
+        )]
     public class CommentsZoneWidgetViewComponent : AbpViewComponent
     {
         private readonly ICommentAppService _service;
