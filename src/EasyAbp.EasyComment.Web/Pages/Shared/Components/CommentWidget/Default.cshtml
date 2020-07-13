@@ -10,7 +10,7 @@
 @inject IHtmlLocalizer<EasyCommentResource> L
 
 <abp-container class="ec-comment" data-comment-id="@Model.Comment.Id" data-creator-id="@Model.Comment.CreatorId">
-    <img class="ec-avatar" gravatar-email="@Model.Comment.CreateUser.Email" default-image="Identicon" gravatar-size="40"/>
+    <img class="ec-user-avatar" src="@(Model.Comment.CreateUser.Avatar ?? "/images/default_avatar.png")"/>
     <div>
         <div class="ec-comment-info">
             <p class="ec-user-name">@Model.Comment.CreateUser.Name</p>

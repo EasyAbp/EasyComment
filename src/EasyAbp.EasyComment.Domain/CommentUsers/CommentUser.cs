@@ -16,7 +16,6 @@ namespace EasyAbp.EasyComment.CommentUsers
         public bool EmailConfirmed { get; protected set; }
         public string PhoneNumber { get; protected set; }
         public bool PhoneNumberConfirmed { get; protected set; }
-
         public string Avatar { get; protected set; }
 
         protected CommentUser()

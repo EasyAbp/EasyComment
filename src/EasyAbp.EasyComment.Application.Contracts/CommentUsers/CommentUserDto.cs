@@ -21,6 +21,8 @@ namespace EasyAbp.EasyComment.CommentUsers
         public string PhoneNumber { get; set; }
 
         public bool PhoneNumberConfirmed { get; set; }
+        
+        public string Avatar { get; set; }
 
         public Dictionary<string, object> ExtraProperties { get; set; }
     }
