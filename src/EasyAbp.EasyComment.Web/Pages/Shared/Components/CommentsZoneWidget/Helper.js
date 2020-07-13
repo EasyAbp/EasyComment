@@ -26,8 +26,8 @@
 
         cancelEdit: function ($element) {
             easyCommentHelper.getCommentViewerWidgetWrapper($element).show();
-            easyCommentHelper.getCommentEditorWidgetWrapper($element).hide();
             easyCommentHelper.getCommentWidgetWrapper($element).find(".dropdown").show();
+            easyCommentHelper.getCommentEditorWidgetWrapper($element).remove();
         }
     }
 })();
