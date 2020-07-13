@@ -8,7 +8,11 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentEditorWidget
 {
     [Widget(
         RefreshUrl = "/widgets/easyComment/showCommentEditor",
-        ScriptFiles = new[] {"/Pages/Shared/Components/CommentEditorWidget/Default.js"},
+        ScriptFiles = new[]
+        {
+            "/Pages/Shared/Components/CommentEditorWidget/Default.js",
+            "/Pages/Shared/Components/CommentEditorWidget/Action.js",
+        },
         StyleFiles = new []{"/Pages/Shared/Components/CommentEditorWidget/Default.css"}
     )]
     public class CommentEditorWidgetViewComponent : AbpViewComponent
