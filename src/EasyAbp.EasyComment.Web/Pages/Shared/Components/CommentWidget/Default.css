@@ -1,0 +1,27 @@
+﻿.ec-avatar {
+    margin: 0 10px
+}
+.ec-comment {
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.ec-comment-info {
+    display: inline-flex;
+}
+
+.ec-user-name {
+    font-weight: bold;
+}
+
+.ec-reply-to {
+    margin: 0 5px;
+}
+
+.ec-comment-time {
+    color: gray;
+    margin-left: 5px;
+}
+

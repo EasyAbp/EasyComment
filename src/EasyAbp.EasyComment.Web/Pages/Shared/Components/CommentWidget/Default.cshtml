@@ -10,42 +10,38 @@
 @inject IHtmlLocalizer<EasyCommentResource> L
 
 <abp-container class="ec-comment" data-comment-id="@Model.Comment.Id" data-creator-id="@Model.Comment.CreatorId">
-    <abp-row>
-        <abp-column size="_10">
-            <abp-row>
-                <img gravatar-email="@Model.Comment.CreateUser.Email" default-image="Identicon" gravatar-size="40"/>
-                <p class="ec-user-name">@Model.Comment.CreateUser.Name</p>
-                @if (Model.Comment.ReplyTo.HasValue)
-                {
-                    <span class="ec-reply-to">@L["ReplyTo"]</span>
-                    <p class="ec-user-name">@Model.Comment.ReplyToUser.Name</p>
-                }
-                <time class="ec-comment-time" datetime="@Model.Comment.CreationTime">@Model.Comment.CreationTime</time>
-            </abp-row>
-        </abp-column>
-        <abp-column size="_2" class="text-right">
-            @if (CurrentUser.IsAuthenticated)
+    <img class="ec-avatar" gravatar-email="@Model.Comment.CreateUser.Email" default-image="Identicon" gravatar-size="40"/>
+    <div>
+        <div class="ec-comment-info">
+            <p class="ec-user-name">@Model.Comment.CreateUser.Name</p>
+            @if (Model.Comment.ReplyTo.HasValue)
             {
-                <abp-dropdown>
-                    <abp-dropdown-button button-type="Light" text="..." size="Medium"/>
-                    <abp-dropdown-menu>
-                        @if (Model.Comment.CreatorId == CurrentUser.GetId() ||
-                             await Authorization.IsGrantedAsync(EasyCommentPermissions.Comment.Update))
-                        {
-                            <abp-dropdown-item class="ec-action-edit">@L["Edit"]</abp-dropdown-item>
-                        }
-                        <abp-dropdown-item class="ec-action-reply">@L["Reply"]</abp-dropdown-item>
-                        <abp-dropdown-item class="ec-action-reference">@L["Reference"]</abp-dropdown-item>
-                        @if (Model.Comment.CreatorId == CurrentUser.GetId() ||
-                             await Authorization.IsGrantedAsync(EasyCommentPermissions.Comment.Delete))
-                        {
-                            <abp-dropdown-divider/>
-                            <abp-dropdown-item class="ec-action-remove">@L["Remove"]</abp-dropdown-item>
-                        }
-                    </abp-dropdown-menu>
-                </abp-dropdown>
+                <span class="ec-reply-to">@L["ReplyTo"]</span>
+                <p class="ec-user-name">@Model.Comment.ReplyToUser.Name</p>
             }
-        </abp-column>
-    </abp-row>
-    @await Component.InvokeAsync("CommentViewerWidget", new CommentViewerWidgetParameter {Id = Model.Comment.Id, Content = Model.Comment.Content,})
+            <time class="ec-comment-time" datetime="@Model.Comment.CreationTime">@Model.Comment.CreationTime</time>
+        </div>
+        @await Component.InvokeAsync("CommentViewerWidget", new CommentViewerWidgetParameter {Id = Model.Comment.Id, Content = Model.Comment.Content,})
+    </div>
+    @if (CurrentUser.IsAuthenticated)
+    {
+        <abp-dropdown>
+            <abp-dropdown-button button-type="Light" text="..." size="Medium"/>
+            <abp-dropdown-menu>
+                @if (Model.Comment.CreatorId == CurrentUser.GetId() ||
+                     await Authorization.IsGrantedAsync(EasyCommentPermissions.Comment.Update))
+                {
+                    <abp-dropdown-item class="ec-action-edit">@L["Edit"]</abp-dropdown-item>
+                }
+                <abp-dropdown-item class="ec-action-reply">@L["Reply"]</abp-dropdown-item>
+                <abp-dropdown-item class="ec-action-reference">@L["Reference"]</abp-dropdown-item>
+                @if (Model.Comment.CreatorId == CurrentUser.GetId() ||
+                     await Authorization.IsGrantedAsync(EasyCommentPermissions.Comment.Delete))
+                {
+                    <abp-dropdown-divider/>
+                    <abp-dropdown-item class="ec-action-remove">@L["Remove"]</abp-dropdown-item>
+                }
+            </abp-dropdown-menu>
+        </abp-dropdown>
+    }
 </abp-container>

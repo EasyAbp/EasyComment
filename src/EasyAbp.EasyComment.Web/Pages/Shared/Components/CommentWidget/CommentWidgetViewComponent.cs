@@ -5,7 +5,9 @@ using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
 
 namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentWidget
 {
-    [Widget]
+    [Widget(
+        StyleFiles = new []{"/Pages/Shared/Components/CommentWidget/Default.css"}
+        )]
     public class CommentWidgetViewComponent : AbpViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(CommentWidgetParameter parameter)
