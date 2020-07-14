@@ -56,8 +56,8 @@
                 id: commentId,
                 content: abp.widgets.CommentEditorWidget(editorWidget).getContent()
             }).then(function () {
-                commentWidgetWrapper.empty();
                 const widgetManager = easyCommentHelper.getWidgetManager($action, "CommentWidget");
+                easyCommentHelper.cancelEdit($action);
                 widgetManager.refresh();
                 abp.notify.info(l("SuccessfullyEditComment"));
             });

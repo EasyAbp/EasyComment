@@ -4,16 +4,12 @@
     easyCommentHelper = {
         getWidgetManager: function ($element, widgetName) {
             const wrapper = $element.closest(`.abp-widget-wrapper[data-widget-name=${widgetName}]`);
-            const manager = new abp.WidgetManager($(wrapper).parents());
+            const manager = new abp.WidgetManager({wrapper: wrapper.parent()});
             manager.init();
 
             return manager;
         },
 
-        getCommentsListWrapper: function ($element) {
-            return $element.closest(".abp-widget-wrapper[data-widget-name=CommentWidget]");
-        },
-        
         getCommentWidgetWrapper: function ($element) {
             return $element.closest(".abp-widget-wrapper[data-widget-name=CommentWidget]");
         },

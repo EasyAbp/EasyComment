@@ -10,7 +10,7 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
     [Widget(
         RefreshUrl = "/widgets/easyComment/showCommentViewer",
         ScriptFiles = new[] {"/Pages/Shared/Components/CommentViewerWidget/Default.js"},
-         StyleFiles= new[] {"/Pages/Shared/Components/CommentViewerWidget/Default.css"}
+        StyleFiles = new[] {"/Pages/Shared/Components/CommentViewerWidget/Default.css"}
     )]
     public class CommentViewerWidgetViewComponent : AbpViewComponent
     {
@@ -23,17 +23,18 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentViewerWidget
 
         public async Task<IViewComponentResult> InvokeAsync(CommentViewerWidgetParameter parameter)
         {
+            CommentViewerWidgetViewModel vm;
             if (parameter.FromServer)
             {
                 var comment = await _service.GetAsync(parameter.Id);
-                parameter.Content = comment.Content;
+                vm = new CommentViewerWidgetViewModel(comment.Id, comment.Content);
+            }
+            else
+            {
+                vm = new CommentViewerWidgetViewModel(parameter.Id, parameter.Content);
             }
 
-            return View(new CommentViewerWidgetViewModel
-            {
-                Id = parameter.Id,
-                Content = parameter.Content,
-            });
+            return View(vm);
         }
     }
 }
