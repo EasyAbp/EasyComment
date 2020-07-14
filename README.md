@@ -11,7 +11,7 @@ An ABP application module provides a flexible comment system.
     You can reuse the comment widgets in your applications, attach to arbitrary contents.
 
 * Ajax loading
-* User avatar display
+* Commenter avatar display
 
    Can integrate third-party avatar services
 * Comment actions: Publish, Edit, Reply, Reference, Delete
