@@ -60,6 +60,8 @@
                 if (result) {
                     service.removeComment(commentId)
                         .then(function () {
+                            const commentsZoneWidget = $action.closest(".ec-comments-zone");
+                            commentsZoneWidget.empty();
                             const widgetManager = easyCommentHelper.getWidgetManager($action, "CommentsZoneWidget");
                             widgetManager.refresh();
                             abp.notify.info(l("SuccessfullyRemoveComment"));

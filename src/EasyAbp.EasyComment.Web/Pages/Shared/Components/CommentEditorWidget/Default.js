@@ -25,6 +25,7 @@
                 replyTo: replyTo
             })
                 .then(function () {
+                    commentsZoneWidget.empty();
                     const widgetManager = easyCommentHelper.getWidgetManager($wrapper, "CommentsZoneWidget");
                     widgetManager.refresh();
                     abp.notify.info(successMessage);

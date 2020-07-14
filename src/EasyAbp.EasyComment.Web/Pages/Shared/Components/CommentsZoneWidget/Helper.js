@@ -6,10 +6,10 @@
             const wrapper = $element.closest(`.abp-widget-wrapper[data-widget-name=${widgetName}]`);
             const manager = new abp.WidgetManager($(wrapper).parents());
             manager.init();
-            
+
             return manager;
         },
-        
+
         getCommentWidgetWrapper: function ($element) {
             return $element.closest(".abp-widget-wrapper[data-widget-name=CommentWidget]");
         },
