@@ -9,11 +9,15 @@
 @inject ICurrentUser CurrentUser
 @inject IAuthorizationService Authorization
 
-<abp-container class="ec-comments-list">
+<abp-container class="ec-comments-list" >
 @foreach (CommentDto comment in Model.Comments)
 {
     <div class="ec-comment-holder">
         @await Component.InvokeAsync("CommentWidget", new CommentWidgetParameter(comment))
     </div>
 }
-</abp-container>
+@if (Model.HasMore)
+{
+    <abp-button class="ec-button-load-more" button-type="Link" size="Block_Small" text="@L["LoadMoreComments"].Value" data-loaded-count="@Model.LoadedCount"></abp-button>
+}
+ </abp-container>

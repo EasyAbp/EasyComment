@@ -10,6 +10,10 @@
             return manager;
         },
 
+        getCommentsListWrapper: function ($element) {
+            return $element.closest(".abp-widget-wrapper[data-widget-name=CommentWidget]");
+        },
+        
         getCommentWidgetWrapper: function ($element) {
             return $element.closest(".abp-widget-wrapper[data-widget-name=CommentWidget]");
         },

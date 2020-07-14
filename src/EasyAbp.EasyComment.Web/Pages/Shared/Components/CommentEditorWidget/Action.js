@@ -17,36 +17,36 @@
     });
 
     $(document).on("click", ".ec-editor-button-cancel", function () {
-        const $btn = $(this);
-        const form = $btn.closest("form");
+        const $action = $(this);
+        const form = $action.closest("form");
 
         if ($(form).data('changed')) {
             abp.message.confirm(l("AreYouSureYouWantToCancelEditingWarningMessage"))
                 .done(function (result) {
                     if (result) {
-                        easyCommentHelper.cancelEdit($btn);
+                        easyCommentHelper.cancelEdit($action);
                     }
                 })
         } else {
-            easyCommentHelper.cancelEdit($btn);
+            easyCommentHelper.cancelEdit($action);
         }
     });
 
     $(document).on("click", ".ec-editor-button-save", function (e) {
         e.preventDefault();
 
-        const $btn = $(this);
-        const form = $btn.closest("form");
+        const $action = $(this);
+        const form = $action.closest("form");
         if (!$(form).valid()) return;
 
         if (!$(form).data('changed')) {
-            easyCommentHelper.cancelEdit($btn);
+            easyCommentHelper.cancelEdit($action);
             return;
         }
 
-        const commentWidgetWrapper = easyCommentHelper.getCommentWidgetWrapper($btn);
+        const commentWidgetWrapper = easyCommentHelper.getCommentWidgetWrapper($action);
         const commentId = commentWidgetWrapper.find(".ec-comment").attr("data-comment-id");
-        const editorWidget = easyCommentHelper.getCommentEditorWidgetWrapper($btn);
+        const editorWidget = easyCommentHelper.getCommentEditorWidgetWrapper($action);
         const replyTo = editorWidget.data("replyTo");
 
         if (replyTo) {
@@ -57,7 +57,7 @@
                 content: abp.widgets.CommentEditorWidget(editorWidget).getContent()
             }).then(function () {
                 commentWidgetWrapper.empty();
-                const widgetManager = easyCommentHelper.getWidgetManager($btn, "CommentWidget");
+                const widgetManager = easyCommentHelper.getWidgetManager($action, "CommentWidget");
                 widgetManager.refresh();
                 abp.notify.info(l("SuccessfullyEditComment"));
             });

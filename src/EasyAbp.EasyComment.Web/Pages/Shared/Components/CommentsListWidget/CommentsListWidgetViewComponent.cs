@@ -7,7 +7,11 @@ using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
 
 namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsListWidget
 {
-    [Widget]
+    [Widget(
+        RefreshUrl = "/widgets/easyComment/showCommentsList",
+        ScriptFiles = new[] { "/Pages/Shared/Components/CommentsListWidget/Default.js"}, 
+        StyleFiles = new []{"/Pages/Shared/Components/CommentsListWidget/Default.css"}
+        )]
     public class CommentsListWidgetViewComponent : AbpViewComponent
     {
         private readonly ICommentAppService _service;
@@ -23,13 +27,12 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsListWidget
             {
                 ItemType = parameter.ItemType,
                 ItemKey = parameter.ItemKey,
-                SkipCount = parameter.SkipCount,
+                SkipCount = parameter.LoadedCount,
                 MaxResultCount = parameter.MaxResultCount,
                 Sorting = parameter.Sorting
             });
 
-            bool hasMore = parameter.LoadedCount + output.Items.Count < output.TotalCount;
-            return View(new CommentsListWidgetViewModel(output.Items, output.TotalCount, hasMore));
+            return View(new CommentsListWidgetViewModel(output.Items, parameter.LoadedCount + output.Items.Count, output.TotalCount));
         }  
     }
 }

@@ -6,15 +6,16 @@ namespace EasyAbp.EasyComment.Web.Pages.Shared.Components.CommentsListWidget
     public class CommentsListWidgetViewModel
     {
         public IReadOnlyList<CommentDto> Comments { get; }
-        
+
+        public long LoadedCount { get; }
         public long TotalCount { get; }
 
-        public bool HasMore { get; }
+        public bool HasMore => LoadedCount < TotalCount;
 
-        public CommentsListWidgetViewModel(IReadOnlyList<CommentDto> comments, long totalCount, bool hasMore)
+        public CommentsListWidgetViewModel(IReadOnlyList<CommentDto> comments, long loadedCount, long totalCount)
         {
             TotalCount = totalCount;
-            HasMore = hasMore;
+            LoadedCount = loadedCount;
             Comments = comments;
         }
     }
