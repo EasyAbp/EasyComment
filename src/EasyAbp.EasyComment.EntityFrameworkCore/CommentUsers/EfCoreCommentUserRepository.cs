@@ -10,7 +10,7 @@ namespace EasyAbp.EasyComment.CommentUsers
 {
     public class EfCoreCommentUserRepository : EfCoreUserRepositoryBase<IEasyCommentDbContext, CommentUser>, ICommentUserRepository
     {
-        public EfCoreCommentUserRepository(IDbContextProvider<IEasyCommentDbContext> dbContextProvider) 
+        public EfCoreCommentUserRepository(IDbContextProvider<IIEasyCommentDbContext> dbContextProvider) 
             : base(dbContextProvider)
         {
 

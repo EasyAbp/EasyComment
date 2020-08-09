@@ -7,7 +7,7 @@ namespace EasyAbp.EasyComment.Comments
 {
     public class CommentRepository : EfCoreRepository<IEasyCommentDbContext, Comment, Guid>, ICommentRepository
     {
-        public CommentRepository(IDbContextProvider<EasyCommentDbContext> dbContextProvider) : base(dbContextProvider)
+        public CommentRepository(IDbContextProvider<IEasyCommentDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
     }
