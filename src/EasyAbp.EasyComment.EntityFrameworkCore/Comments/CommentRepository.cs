@@ -5,7 +5,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace EasyAbp.EasyComment.Comments
 {
-    public class CommentRepository : EfCoreRepository<EasyCommentDbContext, Comment, Guid>, ICommentRepository
+    public class CommentRepository : EfCoreRepository<IEasyCommentDbContext, Comment, Guid>, ICommentRepository
     {
         public CommentRepository(IDbContextProvider<EasyCommentDbContext> dbContextProvider) : base(dbContextProvider)
         {
